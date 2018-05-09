@@ -1,0 +1,27 @@
+/* .example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+} */
+
+.signup-card {
+  /* max-width: 400px; */
+  min-height: 80%;
+}
+
+.signup-min-card {
+  max-width: 100px;
+}
+
+.signup-full-width {
+  width: 100%;
+}
+/*
+.signup-error{
+  width: 100%;
+  display: block;
+  padding: 15px;
+  background-color: rgba(248, 109, 85, 0.6);
+  color: #fff;
+  border: 1px solid rgba(197, 56, 31, 0.3);
+
+} */

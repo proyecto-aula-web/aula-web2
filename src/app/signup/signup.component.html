@@ -1,0 +1,113 @@
+<mat-grid-list cols="12" rowHeight="150px">
+  <mat-grid-tile colspan="3" rowspan="4"></mat-grid-tile>
+  <!-- <mat-grid-tile colspan="3" rowspan="1">
+    <mat-card class="signup-min-card">
+      <mat-card-content>
+        <img mat-card-image [src]="images.img1" alt="Photo">
+        <mat-card-subtitle>Accede a la Informacion</mat-card-subtitle>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile> -->
+  <!-- <mat-grid-tile colspan="3" rowspan="1">
+    <mat-card class="signup-min-card">
+      <mat-card-content>
+        <img mat-card-image [src]="images.img2" alt="Photo">
+        <mat-card-subtitle>Accede a la Informacion</mat-card-subtitle>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile> -->
+  <mat-grid-tile colspan="6" rowspan="4">
+    <mat-card class="signup-card">
+      <!-- <mat-card-header>
+          <mat-card-title>Iniciar sesión</mat-card-title>
+          <mat-card-subtitle>Accede a tu cuenta de Aula</mat-card-subtitle>
+        </mat-card-header> -->
+        <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+          <mat-card-content>
+            <!-- <img mat-card-image [src]="fullPathAsstes" alt="Photo Sigin"> -->
+            <mat-card-title>Crear cuenta</mat-card-title>
+            <mat-card-subtitle>Crea una cuenta y se participe de la Educacion colaborativa.</mat-card-subtitle>
+            <br/>
+
+            <div formGroupName="name">
+              <mat-grid-list cols="8" rowHeight="57px"x>
+                <mat-grid-tile colspan="4">
+                  <mat-form-field class="signup-full-width" >
+                    <input matInput placeholder="Nombre" formControlName="firstname" autofocus>
+                    <mat-error *ngIf="signupForm.controls.name.invalid">Error Nombre</mat-error>
+                  </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile colspan="4">
+                  <mat-form-field class="signup-full-width" colspan="4">
+                    <input matInput placeholder="Apellidos" formControlName="lastname">
+                    <mat-error *ngIf="signupForm.controls.name.invalid">Error Apellido</mat-error>
+                  </mat-form-field>
+                </mat-grid-tile>
+                <!-- eliminar -->
+                <!-- <mat-grid-tile colspan="8">
+                  <div class="signup-error" *ngIf="signupForm.controls.name.invalid">
+                    <span>Error en el nombre</span>
+                  </div>
+                </mat-grid-tile> -->
+
+              </mat-grid-list>
+            </div>
+
+            <br/>
+
+            <mat-form-field class="signup-full-width">
+              <input matInput placeholder="Nombre de usuario" formControlName="username">
+              <!-- <mat-error *ngIf="signupForm.controls.password.invalid">{{getErrorMessage()}}</mat-error> -->
+              <mat-error *ngIf="signupForm.controls.username.invalid">erroe email</mat-error>
+              <!-- signupForm.controls.email.invalid -->
+            </mat-form-field>
+
+            <br/>
+
+            <mat-form-field class="signup-full-width">
+              <input matInput placeholder="Correo electronico" formControlName="email">
+              <!-- <mat-error *ngIf="signupForm.controls.password.invalid">{{getErrorMessage()}}</mat-error> -->
+              <mat-error *ngIf="signupForm.controls.email.invalid">erroe email</mat-error>
+              <!-- signupForm.controls.email.invalid -->
+            </mat-form-field>
+
+            <br/>
+
+            <div formGroupName="password">
+              <mat-grid-list cols="8" rowHeight="57px">
+                <mat-grid-tile colspan="4">
+                  <mat-form-field class="signup-full-width">
+                    <input matInput id="pwd" type="password" placeholder="Contreseña" formControlName="pwd">
+                    <!-- <mat-error *ngIf="signupForm.controls.password.invalid">{{getErrorMessage()}}</mat-error> -->
+                    <mat-error *ngIf="signupForm.controls.password.invalid">error password</mat-error>
+                  </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile colspan="4">
+                  <mat-form-field class="signup-full-width">
+                    <input matInput id="confirmPwd" type="password" placeholder="Confirmar contreseña" formControlName="confirmPwd">
+                    <!-- <mat-error *ngIf="signupForm.controls.password.invalid">{{getErrorMessage()}}</mat-error> -->
+                    <mat-error *ngIf="signupForm.controls.password.invalid">error password</mat-error>
+                    <!-- <mat-error *ngIf="model.pwd">Contreseñas no coinciden</mat-error> -->
+                    <!-- <div class="alert alert-danger" *ngIf="form.controls.confirmPassword.errors?.MutchPassword">Password not match</div> -->
+                    <!-- <mat-error *ngIf="signupForm.controls. confirmPwd.errors?.MutchPassword">Contreseñas no coinciden!</mat-error> -->
+                  </mat-form-field>
+                </mat-grid-tile>
+              </mat-grid-list>
+            </div>
+
+          </mat-card-content>
+
+          <mat-card-actions >
+            <button mat-button routerLink="/signin">Quiero iniciar sesión</button>
+            <button mat-raised-button color="primary" type="submit" [disabled]="!signupForm.valid">Crear cuenta</button>
+
+          </mat-card-actions>
+        </form>
+
+
+    </mat-card>
+  </mat-grid-tile>
+
+  <mat-grid-tile colspan="3" rowspan="4"></mat-grid-tile>
+
+</mat-grid-list>
