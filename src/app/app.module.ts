@@ -12,7 +12,6 @@ import { AuthGuard } from "./core/auth.guard";
 import { DemoMaterialModule } from "./demo-material/demo-material.module";
 
 
-
 import { AngularFireModule } from "angularfire2";
 import { environment } from "../environments/environment";
 import {CoreModule} from "./core/core.module";

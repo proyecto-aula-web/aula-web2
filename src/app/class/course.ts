@@ -1,6 +1,6 @@
 import { Instructor, Student } from "./user";
 import { Day } from "./day";
-import { Evaluation } from "./Evaluation";
+import { Evaluation } from "./evaluation";
 import { Theme } from "./theme";
 
 export class Course {
