@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
+import { Injectable } from "@angular/core";
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from "@angular/router";
 
-import { AuthService } from './auth.service';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/take';
+import { AuthService } from "./auth.service";
+import { Observable } from "rxjs/Observable";
+import "rxjs/add/operator/do";
+import "rxjs/add/operator/map";
+import "rxjs/add/operator/take";
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -23,10 +23,10 @@ export class AuthGuard implements CanActivate {
       .map(user => !!user)
       .do(loggedIn => {
         if (!loggedIn) {
-          console.log('access denied');
-          this.router.navigate(['/signin']);
+          console.log("access denied");
+          this.router.navigate(["/signin"]);
         } else {
-          console.log('access granted!'); }
+          console.log("access granted!"); }
       });
 
 
