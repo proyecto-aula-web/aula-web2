@@ -3,7 +3,8 @@ import { Component, OnInit } from "@angular/core";
 import {
   FormBuilder,
   FormGroup,
-  Validators
+  Validators,
+  AbstractControl
 } from "@angular/forms";
 import { AuthService } from "../core/auth.service";
 import { Router } from "@angular/router";
@@ -87,11 +88,11 @@ export class SignupComponent implements OnInit {
         firstname: ["", Validators.required],
         lastname: ["", Validators.required]
       }),
-      username: ["", Validators.required, Validators.pattern(usernamePattern)],
-      email: ["", Validators.required, Validators.pattern(emailPattern)],
+      username: ["", [Validators.required, Validators.pattern(usernamePattern)]],
+      email: ["", [Validators.required, Validators.pattern(emailPattern)]],
       password: this.fb.group({
         pwd: ["", Validators.required],
-        confirmPwd: ["", Validators.required, PasswordValidation.MatchPassword]
+        confirmPwd: ["", Validators.required]
       })
     });
   }

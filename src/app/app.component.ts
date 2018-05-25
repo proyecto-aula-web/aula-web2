@@ -1,17 +1,17 @@
 // import { Component, } from "@angular/core";
 
-import {MediaMatcher} from "@angular/cdk/layout";
-import {Component, ChangeDetectorRef, OnDestroy} from "@angular/core";
+import {MediaMatcher} from '@angular/cdk/layout';
+import {Component, ChangeDetectorRef, OnDestroy} from '@angular/core';
 
 // import {MiServici}
 
 @Component({
-  selector: "au-root",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.css"]
+  selector: 'au-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnDestroy {
-  title = "Aula";
+  title = 'Aula';
 
   mobileQuery: MediaQueryList;
 
@@ -27,7 +27,7 @@ export class AppComponent implements OnDestroy {
   private _mobileQueryListener: () => void;
 
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
-    this.mobileQuery = media.matchMedia("(max-width: 600px)");
+    this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
   }

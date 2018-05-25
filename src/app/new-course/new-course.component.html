@@ -1,0 +1,72 @@
+<button mat-raised-button (click)='isLinear = !isLinear' id='toggle-linear'>
+  {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
+</button>
+<div class='au-stepper-margin'>
+  <mat-horizontal-stepper [linear]='isLinear' #stepper>
+    <mat-step [stepControl]='stepOneForm'>
+      <form [formGroup]='stepOneForm'>
+        <!-- <ng-template matStepLabel>Fill out your name</ng-template> -->
+        <ng-template matStepLabel>Paso 1</ng-template>
+        <!-- <mat-form-field>
+          <input matInput placeholder='Last name, First name' formControlName='firstCtrl'>
+        </mat-form-field> -->
+        <!-- <div>
+          <button mat-button matStepperNext>Next</button>
+        </div> -->
+
+        <br/>
+
+        <mat-form-field class='signup-full-width'>
+          <input matInput [placeholder]='print.name' formControlName='name'>
+          <mat-error *ngIf='stepOneForm.controls.name.invalid' [innerHTML]='print.required'>erroe email</mat-error>
+        </mat-form-field>
+        <br/>
+        <mat-form-field class='signup-full-width'>
+          <input matInput [placeholder]='print.code' formControlName='code'>
+          <mat-error *ngIf='stepOneForm.controls.code.invalid' [innerHTML]='print.required'>erroe email</mat-error>
+        </mat-form-field>
+        <br/>
+        <mat-form-field class='signup-full-width'>
+          <input matInput [placeholder]='print.institution' formControlName='institution'>
+          <mat-error *ngIf='stepOneForm.controls.institution.invalid' [innerHTML]='print.required'>erroe email</mat-error>
+        </mat-form-field>
+        <br/>
+        <div>
+          <button mat-button matStepperNext [innerHTML]='print.next'></button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step >
+        <!-- <ng-template matStepLabel>Fill out your address</ng-template> -->
+        <ng-template matStepLabel>Paso 2</ng-template>
+
+    </mat-step>
+    <mat-step>
+      <!-- <ng-template matStepLabel>Done</ng-template> -->
+      <ng-template matStepLabel>Paso 3</ng-template>
+      You are now done.
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)='stepper.reset()'>Reset</button>
+      </div>
+    </mat-step>
+    <mat-step>
+      <!-- <ng-template matStepLabel>Done</ng-template> -->
+      <ng-template matStepLabel>Paso 4</ng-template>
+      <!-- You are now done.
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)='stepper.reset()'>Reset</button>
+      </div> -->
+    </mat-step>
+    <mat-step>
+      <!-- <ng-template matStepLabel>Done</ng-template> -->
+      <ng-template matStepLabel>Paso 5</ng-template>
+      <!-- You are now done.
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)='stepper.reset()'>Reset</button>
+      </div> -->
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>

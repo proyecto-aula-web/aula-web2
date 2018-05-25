@@ -1,5 +1,5 @@
 import { AbstractControl } from "@angular/forms";
-// import { observableOf } from "rxjs/Observable";
+// import { observableOf } from "rxjs/";
 
 export class PasswordValidation {
   // validate(AC: AbstractControl): ValidatorFn {

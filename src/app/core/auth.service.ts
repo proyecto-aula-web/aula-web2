@@ -8,8 +8,8 @@ import {
   AngularFirestoreDocument
 } from 'angularfire2/firestore';
 
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/switchMap';
+import { Observable, of } from 'rxjs';
+import { switchMap } from 'rxjs/operators/switchMap';
 
 
 interface User {
@@ -21,16 +21,8 @@ interface User {
   displayName?: string;
   photoURL?: string;
   provider?: string; /** eliminar */
-
-  // favoriteColor?: string;
 }
 
-// @Injectable()
-// export class AuthService {
-
-//   constructor() { }
-
-// }
 
 @Injectable()
 export class AuthService {
@@ -42,13 +34,13 @@ export class AuthService {
     private router: Router
   ) {
     //// Get auth data, then get firestore user document || null
-    this.user = this.afAuth.authState.switchMap(user => {
+    this.user = this.afAuth.authState.pipe(switchMap(user => {
       if (user) {
         return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
       } else {
-        return Observable.of(null);
+        return of(null);
       }
-    });
+    }));
   }
 
   // registerUser(email: string, pwd: string) {

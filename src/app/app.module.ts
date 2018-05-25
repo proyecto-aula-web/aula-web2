@@ -21,6 +21,7 @@ import {CoreModule} from "./core/core.module";
 import { UserProfileComponent } from "./user-profile/user-profile.component";
 import { SigninComponent } from "./signin/signin.component";
 import { SignupComponent } from "./signup/signup.component";
+import { NewCourseComponent } from './new-course/new-course.component';
 
 // import { CdkTableModule } from "@angular/cdk/table";
 
@@ -30,7 +31,8 @@ import { SignupComponent } from "./signup/signup.component";
     AppComponent,
     UserProfileComponent,
     SigninComponent,
-    SignupComponent
+    SignupComponent,
+    NewCourseComponent
   ],
   imports: [
     // CdkTableModule,
