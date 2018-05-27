@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NewCourseComponent } from './new-course.component';
+import { DeleteThemeDialogComponent } from './delete-theme-dialog.component';
 
-describe('NewCourseComponent', () => {
-  let component: NewCourseComponent;
-  let fixture: ComponentFixture<NewCourseComponent>;
+describe('DeleteThemeDialogComponent', () => {
+  let component: DeleteThemeDialogComponent;
+  let fixture: ComponentFixture<DeleteThemeDialogComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NewCourseComponent ]
+      declarations: [ DeleteThemeDialogComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NewCourseComponent);
+    fixture = TestBed.createComponent(DeleteThemeDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

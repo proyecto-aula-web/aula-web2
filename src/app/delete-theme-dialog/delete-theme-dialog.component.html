@@ -1,0 +1,10 @@
+
+<h2 mat-dialog-title>Delete {{theme.name}}</h2>
+<mat-dialog-content> <h3>Are you sure?</h3>
+
+<mat-dialog-actions >
+	<button  class = "mat-raised-button" (click)= "close()">Cerrar</button>
+	<button  mat-raised-button color='primary' (click)="deleteTheme()">Delete</button>		    
+</mat-dialog-actions>
+
+</mat-dialog-content>

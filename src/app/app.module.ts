@@ -22,6 +22,7 @@ import { UserProfileComponent } from "./user-profile/user-profile.component";
 import { SigninComponent } from "./signin/signin.component";
 import { SignupComponent } from "./signup/signup.component";
 import { NewCourseComponent } from './new-course/new-course.component';
+import { DeleteThemeDialogComponent } from './delete-theme-dialog/delete-theme-dialog.component';
 
 // import { CdkTableModule } from "@angular/cdk/table";
 
@@ -32,7 +33,8 @@ import { NewCourseComponent } from './new-course/new-course.component';
     UserProfileComponent,
     SigninComponent,
     SignupComponent,
-    NewCourseComponent
+    NewCourseComponent,
+    DeleteThemeDialogComponent
   ],
   imports: [
     // CdkTableModule,
