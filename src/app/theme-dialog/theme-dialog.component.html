@@ -1,0 +1,70 @@
+	
+<mat-chip color="accent" selected="true" *ngIf="!idTheme">Add theme</mat-chip>
+<mat-chip color="accent" selected="true" *ngIf="idTheme">Edit theme</mat-chip>
+
+
+<div fxLayout="column">
+
+	
+
+	<form #formTheme="ngForm" (ngSubmit)="onSubmitTheme(formTheme)" *ngIf="!idTheme">
+
+		<mat-dialog-content>
+
+					<div>
+						<mat-form-field>
+			        	<input matInput placeholder = "Nombre del tema" [(ngModel)]="theme.name" id="name" name="name">
+			    		</mat-form-field>
+					
+			    		<button  mat-mini-fab color="primary" type="submit" *ngIf="!idTheme"><mat-icon>add</mat-icon></button>
+					</div>
+
+					<div>
+						<mat-form-field>
+			        	<input matInput placeholder = "Descripcion" [(ngModel)]="theme.description" id="description" name="description">
+			    		</mat-form-field>
+					</div>
+
+			
+
+			</mat-dialog-content> 
+	</form>
+
+	<form #formEditTheme="ngForm" (ngSubmit)="onEditTheme(formEditTheme)" *ngIf="idTheme">	
+		
+			<mat-dialog-content>
+
+					<div>
+						<mat-form-field>
+			        	<input matInput placeholder = "Nombre del tema" [(ngModel)]="theme.name" id="name" name="name">
+			    		</mat-form-field>
+					
+			    		<button  mat-mini-fab color="primary" type="submit" *ngIf="!idTheme"><mat-icon>add</mat-icon></button>
+					</div>
+
+					<div>
+						<mat-form-field>
+			        	<input matInput placeholder = "Descripcion" [(ngModel)]="theme.description" id="description" name="description">
+			    		</mat-form-field>
+					</div>
+
+			</mat-dialog-content> 
+
+			
+			<mat-dialog-actions >
+				
+				<button  mat-raised-button color='primary' type="submit">Editar</button>
+			    
+			</mat-dialog-actions>
+		
+			
+	</form>
+
+	<mat-dialog-actions >
+	<button  class = "mat-raised-button" (click)= "close()">Cerrar</button>
+	</mat-dialog-actions>
+		
+
+
+
+</div>

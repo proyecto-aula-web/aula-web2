@@ -1,11 +1,10 @@
-import { PostInterface } from "./post";
-
-export class ThemeInterface {
+export interface ThemeInterface {
   id: string;
   name: string;
   id_course: string;
   subthemes: string[];
-  posts: PostInterface[];
+  description: string;
+  posts: string[];
 }
 
 

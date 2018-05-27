@@ -21,6 +21,7 @@ export class DeleteThemeDialogComponent implements OnInit {
 	};
   
 	 idTheme: string;
+   name : string;
 
   constructor(
         private dialogRef: MatDialogRef<DeleteThemeDialogComponent>,
@@ -32,6 +33,7 @@ export class DeleteThemeDialogComponent implements OnInit {
   	
        this.idTheme = this.data.id;
        this.getTheme();
+       this.name = this.theme.name;
      
     }
 

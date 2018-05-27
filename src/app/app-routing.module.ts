@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
+import { NewThemeComponent } from './new-theme/new-theme.component';
 import { AuthGuard } from './core/auth.guard';
 import { NewCourseComponent } from './new-course/new-course.component';
 
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'course', component: NewCourseComponent },
   { path: 'signin', component: SigninComponent },
   { path: 'signup', component: SignupComponent },
+  { path: "new-theme", component: NewThemeComponent},
   { path: '', redirectTo: '/signin', pathMatch: 'full' },
   { path: '**', redirectTo: '/signin', pathMatch: 'full' }
 ];
