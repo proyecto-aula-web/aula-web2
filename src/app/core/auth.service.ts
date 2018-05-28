@@ -10,6 +10,7 @@ import {
 
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators/switchMap';
+import { map } from 'rxjs/operators';
 
 
 interface User {
@@ -50,6 +51,9 @@ export class AuthService {
   //       .then(userData => resolve(userData), error => reject(error));
   //   });
   // }
+  getAuth(){
+    return this.afAuth.authState.pipe(map(auth => auth));
+  }  
 
   registerUser(email: string, pwd: string, additionalUserInfo: any) {
 

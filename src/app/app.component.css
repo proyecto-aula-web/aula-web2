@@ -1,3 +1,4 @@
+
 .example-container {
   display: flex;
   flex-direction: column;
@@ -28,4 +29,49 @@ h1.example-app-name {
   /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
      `<body>` to be our scrolling element for mobile layouts. */
   flex: 1 0 auto;
+}
+
+img.avatar {
+    /* cambia estos dos valores para definir el tamaño de tu círculo */
+    height: 45px;
+    width: 45px;
+    /* los siguientes valores son independientes del tamaño del círculo */
+    background-repeat: no-repeat;
+    background-position: 50%;
+    border-radius: 50%;
+    background-size: 100% auto;
+}
+
+mat-chip.email{
+  color:  #fff;
+}
+
+div.menu-navbar{
+  float: right;
+  vertical-align: center;
+}
+
+div.container{
+  flex: 1 1 auto;
+}
+
+mat-sidenav.menu-sidenav{
+  min-width: 18% !important;
+  width: 18% !important;
+  max-width: 18% !important;
+}
+
+.example-sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.example-sidenav {
+  padding: 20px;
+}
+
+button.home {
+  float: left;
 }

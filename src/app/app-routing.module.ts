@@ -20,7 +20,7 @@ const routes: Routes = [
   { path: 'course', component: NewCourseComponent },
   { path: 'signin', component: SigninComponent },
   { path: 'signup', component: SignupComponent },
-  { path: "new-theme", component: NewThemeComponent},
+  { path: 'new-theme', component: NewThemeComponent },
   { path: '', redirectTo: '/signin', pathMatch: 'full' },
   { path: '**', redirectTo: '/signin', pathMatch: 'full' }
 ];

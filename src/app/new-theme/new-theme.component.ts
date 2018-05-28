@@ -63,4 +63,8 @@ export class NewThemeComponent implements OnInit {
     this.themeService.getAllThemes().subscribe(themes => this.themes = themes);
     console.log(this.themes);
   }
+
+  addSubtheme(theme: ThemeInterface){
+
+  }
 }

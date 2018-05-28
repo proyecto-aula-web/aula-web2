@@ -1,0 +1,36 @@
+img.avatar {
+    /* cambia estos dos valores para definir el tamaño de tu círculo */
+    height: 45px;
+    width: 45px;
+    /* los siguientes valores son independientes del tamaño del círculo */
+    background-repeat: no-repeat;
+    background-position: 50%;
+    border-radius: 50%;
+    background-size: 100% auto;
+}
+
+mat-chip.email{
+	color:  #fff;
+}
+
+div.menu-navbar{
+	float: right;
+	vertical-align: center;
+}
+
+div.container{
+	flex: 1 1 auto;
+}
+
+
+
+.example-sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.example-sidenav {
+  padding: 20px;
+}

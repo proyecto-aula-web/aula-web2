@@ -1,19 +1,24 @@
-import {MediaMatcher} from '@angular/cdk/layout';
-import {Component, ChangeDetectorRef, OnDestroy} from '@angular/core';
-import { AuthService } from './core/auth.service';
-// import {MiServici}
-@Component({
-  selector: 'au-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
-})
-export class AppComponent implements OnDestroy {
-  title = 'Aula';
+import { Component, OnInit } from '@angular/core';
+import { MediaMatcher } from '@angular/cdk/layout';
+import { ChangeDetectorRef, OnDestroy} from '@angular/core';
+import { AuthService } from '../core/auth.service';
+import { Router } from '@angular/router';
 
-public isLogin : boolean;
+@Component({
+  selector: 'au-navigation-bar',
+  templateUrl: './navigation-bar.component.html',
+  styleUrls: ['./navigation-bar.component.css']
+})
+export class NavigationBarComponent implements OnInit {
+
+  public isLogin : boolean;
   public username : string;
   public email : string;
   public fotoUsuario : string;
+ 
+
+  title = 'Aula';
+
   mobileQuery: MediaQueryList;
 
   fillerNav = Array(50).fill(0).map((_, i) => `Nav Item ${i + 1}`);
@@ -27,25 +32,17 @@ public isLogin : boolean;
 
   private _mobileQueryListener: () => void;
 
-  screenWidth: number;
-  
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,
-    public authService : AuthService) {
+    public authService : AuthService, public router : Router) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
-
-    this.screenWidth = window.innerWidth;
-  window.onresize = () => {
-    // set screenWidth on screen size change
-    this.screenWidth = window.innerWidth;
-  };
   }
 
   // shouldRun = [/(^|\.)plnkr\.co$/, /(^|\.)stackblitz\.io$/].some(h => h.test(window.location.host));
   shouldRun = true;
 
-  ngOnDestroy(): void {
+  	ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 
@@ -69,5 +66,5 @@ public isLogin : boolean;
     this.authService.signOut();
   }  
 
-
+  showFiller = false;
 }

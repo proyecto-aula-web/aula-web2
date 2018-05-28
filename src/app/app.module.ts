@@ -28,6 +28,7 @@ import { ThemeDialogComponent } from './theme-dialog/theme-dialog.component';
 import { ThemeService } from './services/theme.service';
 import { FormsModule } from '@angular/forms';
 import {FlexLayoutModule} from '@angular/flex-layout';
+import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 
 // import { CdkTableModule } from "@angular/cdk/table";
 
@@ -42,6 +43,8 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     DeleteThemeDialogComponent,
     NewThemeComponent,
     ThemeDialogComponent,
+    NavigationBarComponent,
+
   ],
   imports: [
     // CdkTableModule,
