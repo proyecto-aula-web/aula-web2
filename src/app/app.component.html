@@ -5,11 +5,12 @@
 
   	<div *ngIf="isLogin" [ngStyle]="{'display' : (screenWidth > 840) ? 'none' : 'block'}">
     <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
-	</div>
+  </div>
+  
 
     <span><h1 class="example-app-name">{{title}}</h1></span>
 
-    <button mat-icon-button  class="home" routerLink="/user-profile"matTooltip="Home" *ngIf="isLogin">
+    <button mat-icon-button  class="home" routerLink="/user-profile" matTooltip="Home" *ngIf="isLogin">
         <mat-icon>home</mat-icon>
     </button>
 
@@ -58,8 +59,10 @@
     <p *ngFor="let content of fillerContent">{{content}}</p>
   </mat-sidenav-content> -->
   <mat-sidenav-content>
-    <router-outlet></router-outlet>
+    <router-outlet>
+    </router-outlet>
   </mat-sidenav-content>
+
 
 </mat-sidenav-container>
 </div>

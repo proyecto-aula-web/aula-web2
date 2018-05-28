@@ -9,16 +9,16 @@ import { AuthService } from './core/auth.service';
 })
 export class AppComponent implements OnDestroy {
   title = 'Aula';
-
-public isLogin : boolean;
+  
+  public isLogin : boolean;
   public username : string;
   public email : string;
   public fotoUsuario : string;
   mobileQuery: MediaQueryList;
 
-  fillerNav = Array(50).fill(0).map((_, i) => `Nav Item ${i + 1}`);
+  fillerNav = Array(15).fill(0).map((_, i) => `Nav Item ${i + 1}`);
 
-  fillerContent = Array(50).fill(0).map(() =>
+  fillerContent = Array(15).fill(0).map(() =>
       `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
@@ -28,7 +28,7 @@ public isLogin : boolean;
   private _mobileQueryListener: () => void;
 
   screenWidth: number;
-  
+
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,
     public authService : AuthService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
@@ -49,25 +49,25 @@ public isLogin : boolean;
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 
-  ngOnInit() { 
+  ngOnInit() {
     this.authService.getAuth().subscribe( auth => {
-      if(auth){
+      if ( auth ) {
         this.isLogin = true;
         this.username = auth.displayName;
         this.email = auth.email;
         this.fotoUsuario = auth.photoURL;
-      }else{
+      } else {
         this.isLogin = false;
       }
 
     });
-  
+
 
    }
 
-   onClickLogout(){
+   onClickLogout() {
     this.authService.signOut();
-  }  
+  }
 
 
 }

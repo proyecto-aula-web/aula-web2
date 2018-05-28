@@ -9,6 +9,7 @@ import { AuthService } from '../core/auth.service';
 })
 export class UserProfileComponent  {
 
+  add = 'Add course';
   constructor(public auth: AuthService ) { }
 
   // ngOnInit() {

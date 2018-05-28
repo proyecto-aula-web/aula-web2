@@ -15,5 +15,9 @@ div.course-buttons{
 }
 
 div.floating-button {
-	position: relative;
+	position: fixed;
+	bottom: 0;
+	margin-bottom: 30px;
+	right: 0;
+	margin-right: 30px;
 }
