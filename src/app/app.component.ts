@@ -9,11 +9,11 @@ import { AuthService } from './core/auth.service';
 })
 export class AppComponent implements OnDestroy {
   title = 'Aula';
-  
-  public isLogin : boolean;
-  public username : string;
-  public email : string;
-  public fotoUsuario : string;
+
+  public isLogin: boolean;
+  public username: string;
+  public email: string;
+  public fotoUsuario: string;
   mobileQuery: MediaQueryList;
 
   fillerNav = Array(15).fill(0).map((_, i) => `Nav Item ${i + 1}`);
@@ -30,7 +30,7 @@ export class AppComponent implements OnDestroy {
   screenWidth: number;
 
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,
-    public authService : AuthService) {
+    public authService: AuthService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -42,20 +42,17 @@ export class AppComponent implements OnDestroy {
   };
   }
 
-  // shouldRun = [/(^|\.)plnkr\.co$/, /(^|\.)stackblitz\.io$/].some(h => h.test(window.location.host));
-  shouldRun = true;
-
-  ngOnDestroy(): void {
-    this.mobileQuery.removeListener(this._mobileQueryListener);
-  }
-
   ngOnInit() {
-    this.authService.getAuth().subscribe( auth => {
-      if ( auth ) {
+    this.authService.getAuth().subscribe(auth => {
+      if (auth) {
         this.isLogin = true;
         this.username = auth.displayName;
         this.email = auth.email;
-        this.fotoUsuario = auth.photoURL;
+        if (auth.photoURL) {
+          this.fotoUsuario = auth.photoURL;
+        } else {
+          this.fotoUsuario = null;
+        }
       } else {
         this.isLogin = false;
       }
@@ -63,7 +60,14 @@ export class AppComponent implements OnDestroy {
     });
 
 
-   }
+  }
+
+  // shouldRun = [/(^|\.)plnkr\.co$/, /(^|\.)stackblitz\.io$/].some(h => h.test(window.location.host));
+  shouldRun = true;
+
+  ngOnDestroy(): void {
+    this.mobileQuery.removeListener(this._mobileQueryListener);
+  }
 
    onClickLogout() {
     this.authService.signOut();

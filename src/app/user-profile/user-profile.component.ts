@@ -1,6 +1,8 @@
 // import { Component, OnInit } from "@angular/core";
 import { Component } from '@angular/core';
 import { AuthService } from '../core/auth.service';
+import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material';
+import { CourseDialogComponent } from '../course-dialog/course-dialog.component';
 
 @Component({
   selector: 'au-user-profile',
@@ -10,9 +12,21 @@ import { AuthService } from '../core/auth.service';
 export class UserProfileComponent  {
 
   add = 'Add course';
-  constructor(public auth: AuthService ) { }
+  constructor(public auth: AuthService,
+  public dialog: MatDialog ) { }
 
-  // ngOnInit() {
-  // }
+  ngOnInit() {
+  }
+
+  openDialogCourse(){
+  	console.log("Abir el boton de dialog");
+
+  	const dialogConfig = new MatDialogConfig();
+
+  	dialogConfig.disableClose = true;
+  	dialogConfig.autoFocus = true;
+  	//dialogConfig.data = {id: null};
+  	this.dialog.open(CourseDialogComponent, dialogConfig);
+  }
 
 }

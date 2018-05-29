@@ -1,0 +1,150 @@
+
+<div class="close-dialog" fxLayoutAlign="end end">
+    <button mat-icon-button (click)= "close()"><mat-icon>clear</mat-icon></button>
+</div>
+
+<div fxLayoutAlign="center center" fxLayout="row" fxLayoutGap="15px">
+  <div fxLayoutAlign="center center">
+    <mat-icon>school</mat-icon>  
+  </div>
+
+  <div fxLayoutAlign="center center">
+    <h2 mat-dialog-title>              Crear curso </h2>
+   </div>
+</div>
+
+<div class='au-stepper-margin' fxLayoutAlign="center center">
+
+  
+
+	<mat-dialog-content>
+  <mat-horizontal-stepper #stepper linear>
+    <mat-step [stepControl]='stepOneForm'>
+      <form [formGroup]='stepOneForm'>
+
+        <ng-template matStepLabel>Curso</ng-template>
+        <!-- <mat-form-field>
+          <input matInput placeholder='Last name, First name' formControlName='firstCtrl'>
+        </mat-form-field> -->
+        <!-- <div>
+          <button mat-button matStepperNext>Next</button>
+        </div> -->
+
+        <br/>
+        <mat-form-field class='signup-full-width'>
+          <input matInput [placeholder]='print.name' formControlName='name'>
+          <mat-error *ngIf='stepOneForm.controls.name.invalid' [innerHTML]='print.required'>name is required</mat-error>
+        </mat-form-field>
+        <br/>
+        <mat-form-field class='signup-full-width'>
+          <input matInput [placeholder]='print.code' formControlName='code'>
+          <mat-error *ngIf='stepOneForm.controls.code.invalid' [innerHTML]='print.required'>code is required</mat-error>
+        </mat-form-field>
+        <br/>
+        <mat-form-field class='signup-full-width'>
+          <input matInput [placeholder]='print.institution' formControlName='institution'>
+          <!-- <mat-error *ngIf='stepOneForm.controls.institution.invalid' [innerHTML]='print.required'>erroe email</mat-error> -->
+        </mat-form-field>
+        <br/>
+        
+      </form>
+
+           <mat-dialog-actions fxLayoutAlign="center center">
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-raised-button color="primary" matStepperNext>Next</button>
+          </mat-dialog-actions>
+    </mat-step>
+    <mat-step >
+        <!-- <ng-template matStepLabel>Fill out your address</ng-template> -->
+        <ng-template matStepLabel>Agregar temas</ng-template>
+
+
+    <div fxLayout="row">
+            <div fxLayout="column">
+              <div>
+                <mat-form-field>
+                    <input matInput placeholder = "Nombre del tema" [(ngModel)]="theme.name" id="name" name="name">
+                  </mat-form-field>
+              
+                  <button  mat-mini-fab color="primary" type="submit" *ngIf="!idTheme"><mat-icon>add</mat-icon></button>
+              </div>
+
+              <div>
+                <mat-form-field>
+                    <input matInput placeholder = "Descripcion" [(ngModel)]="theme.description" id="description" name="description">
+                  </mat-form-field>
+              </div>
+            </div>
+
+        
+            <div fxLayout="row" width="40%">
+
+
+                    <mat-list>
+                      <h3 mat-subheader>Themes</h3>
+
+                      <mat-list-item *ngFor="let theme of themes">
+
+                        <mat-icon mat-list-icon>book</mat-icon> 
+                                <h4 mat-line>{{theme.name}}</h4>
+                                <p mat-line> {{theme.description}} </p>
+                              
+                                <button mat-icon-button ><mat-icon>create</mat-icon></button>
+                                
+                                <button mat-icon-button ><mat-icon>delete</mat-icon></button>
+
+                                <button mat-icon-button ><mat-icon>add</mat-icon></button>
+                          
+                          <mat-divider></mat-divider>
+                      </mat-list-item>
+                    </mat-list>
+
+            </div>
+
+      </div>
+
+        <mat-dialog-actions fxLayoutAlign="center center">
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-raised-button color="primary" matStepperNext>Next</button>
+          </mat-dialog-actions>
+
+    </mat-step>
+    <mat-step>
+      <!-- <ng-template matStepLabel>Done</ng-template> -->
+      <ng-template matStepLabel>Paso 3</ng-template>
+      You are now done.
+      <mat-dialog-actions >
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </mat-dialog-actions>
+      <!-- <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)='stepper.reset()'>Reset</button>
+      </div> -->
+    </mat-step>
+    <mat-step>
+      <!-- <ng-template matStepLabel>Done</ng-template> -->
+      <ng-template matStepLabel>Paso 4</ng-template>
+      <!-- You are now done.
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)='stepper.reset()'>Reset</button>
+      </div> -->
+    </mat-step>
+    <mat-step>
+      <!-- <ng-template matStepLabel>Done</ng-template> -->
+      <ng-template matStepLabel>Paso 5</ng-template>
+      <!-- You are now done.
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)='stepper.reset()'>Reset</button>
+      </div> -->
+    </mat-step>
+  </mat-horizontal-stepper>
+
+</mat-dialog-content>
+
+
+</div>
+
+

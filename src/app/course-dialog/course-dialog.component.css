@@ -1,0 +1,14 @@
+.au-stepper-margin{
+  margin: 30px 20px;
+  height: 100%;
+}
+
+div.course-dialog{
+	right: 0;
+	top:  0;
+}
+
+mat-dialog-actions{
+	width: 100%;
+	align-items: center center;
+}

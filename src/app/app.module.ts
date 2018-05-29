@@ -29,6 +29,7 @@ import { ThemeService } from './services/theme.service';
 import { FormsModule } from '@angular/forms';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
+import { CourseDialogComponent } from './course-dialog/course-dialog.component';
 
 // import { CdkTableModule } from "@angular/cdk/table";
 
@@ -44,6 +45,7 @@ import { NavigationBarComponent } from './navigation-bar/navigation-bar.componen
     NewThemeComponent,
     ThemeDialogComponent,
     NavigationBarComponent,
+    CourseDialogComponent,
 
   ],
   imports: [
@@ -60,7 +62,7 @@ import { NavigationBarComponent } from './navigation-bar/navigation-bar.componen
   ],
   providers: [AuthService, AuthGuard, ThemeService,
   { provide: FirebaseOptionsToken, useValue: environment.firebase }],
-  entryComponents: [AppComponent, ThemeDialogComponent, DeleteThemeDialogComponent],
+  entryComponents: [AppComponent, ThemeDialogComponent, DeleteThemeDialogComponent, CourseDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
