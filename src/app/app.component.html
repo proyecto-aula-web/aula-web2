@@ -50,7 +50,7 @@
 
   <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
     
-    <mat-sidenav class="menu-sidenav" *ngIf="isLogin" #snav [opened]="screenWidth > 840" [mode]="(screenWidth > 840) ? 'side' : 'over'">
+    <mat-sidenav #snav class="menu-sidenav" *ngIf="isLogin"  [opened]="screenWidth > 840" [mode]="(screenWidth > 840) ? 'side' : 'over'">
       <mat-nav-list>
         <a mat-list-item *ngFor="let nav of fillerNav">{{nav}}</a>
       </mat-nav-list>
