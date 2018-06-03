@@ -22,7 +22,7 @@ export class CourseDialogComponent implements OnInit {
   stepFourForm: FormGroup;
   stepFiveForm: FormGroup;
 
-  print: Object = {
+   print: Object = {
     name : 'Nombre curso',
     code : 'Código',
     institution: 'Institución',
@@ -39,6 +39,8 @@ export class CourseDialogComponent implements OnInit {
   		posts: [],
 	};
 
+  public day: boolean;
+  lunes = false;
 
   constructor(
   	private _formBuilder: FormBuilder,
@@ -72,4 +74,6 @@ export class CourseDialogComponent implements OnInit {
     this.themeService.getAllThemes().subscribe(themes => this.themes = themes);
     console.log(this.themes);
   }
+
+
 }

@@ -1,34 +1,32 @@
 
-<div class="close-dialog" fxLayoutAlign="end end">
-    <button mat-icon-button (click)= "close()"><mat-icon>clear</mat-icon></button>
-</div>
-
-<div fxLayoutAlign="center center" fxLayout="row" fxLayoutGap="15px">
-  <div fxLayoutAlign="center center">
-    <mat-icon>school</mat-icon>  
-  </div>
-
-  <div fxLayoutAlign="center center">
-    <h2 mat-dialog-title>              Crear curso </h2>
-   </div>
-</div>
-
-<div class='au-stepper-margin' fxLayoutAlign="center center">
-
-  
 
 	<mat-dialog-content>
+
+
+    <div class="container" >
+
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <div fxLayoutAlign="center center" fxFlex="1 1 88%">
+
+          <div fxLayoutAlign="center center" width="100%">
+              <div><mat-icon>school</mat-icon></div> <div><h2 mat-dialog-title  class="dialog-title">Crear curso</h2></div>
+          </div>
+      </div>
+  
+
+    <div fxFlex="1 1 12%" fxLayout="column" fxLayoutAlign="center center">
+      <button mat-icon-button (click)= "close()"><mat-icon>clear</mat-icon></button>
+    </div>
+</div>
   <mat-horizontal-stepper #stepper linear>
     <mat-step [stepControl]='stepOneForm'>
+      <div class="dialog-subtitle"><h3 mat-dialog-title >Curso</h3></div>
+      <div fxLayoutAlign="center center">
       <form [formGroup]='stepOneForm'>
 
         <ng-template matStepLabel>Curso</ng-template>
-        <!-- <mat-form-field>
-          <input matInput placeholder='Last name, First name' formControlName='firstCtrl'>
-        </mat-form-field> -->
-        <!-- <div>
-          <button mat-button matStepperNext>Next</button>
-        </div> -->
+        
+        
 
         <br/>
         <mat-form-field class='signup-full-width'>
@@ -48,6 +46,7 @@
         <br/>
         
       </form>
+    </div>
 
            <mat-dialog-actions fxLayoutAlign="center center">
             <button mat-button matStepperPrevious>Back</button>
@@ -56,28 +55,31 @@
     </mat-step>
     <mat-step >
         <!-- <ng-template matStepLabel>Fill out your address</ng-template> -->
-        <ng-template matStepLabel>Agregar temas</ng-template>
+        
 
+        <ng-template matStepLabel>Temas</ng-template>
+    <div fxLayout="column"> 
 
-    <div fxLayout="row">
-            <div fxLayout="column">
-              <div>
-                <mat-form-field>
+            <div class="dialog-subtitle"><h3 mat-dialog-title >Temas</h3></div>
+
+              <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
+
+                <div class="name-input" fxFlex="1 1 95%">
+                  
+                  <mat-form-field class="theme-name">
                     <input matInput placeholder = "Nombre del tema" [(ngModel)]="theme.name" id="name" name="name">
                   </mat-form-field>
-              
-                  <button  mat-mini-fab color="primary" type="submit" *ngIf="!idTheme"><mat-icon>add</mat-icon></button>
-              </div>
 
-              <div>
-                <mat-form-field>
-                    <input matInput placeholder = "Descripcion" [(ngModel)]="theme.description" id="description" name="description">
-                  </mat-form-field>
+                </div>
+                
+                <div fxLayout="column" fxLayoutAlign="center center" fxFlex="1 1 5%">
+                  <button  mat-mini-fab color="primary" type="submit" *ngIf="!idTheme"><mat-icon>add</mat-icon></button>
+                </div>
+
               </div>
-            </div>
 
         
-            <div fxLayout="row" width="40%">
+            <div>
 
 
                     <mat-list>
@@ -89,11 +91,7 @@
                                 <h4 mat-line>{{theme.name}}</h4>
                                 <p mat-line> {{theme.description}} </p>
                               
-                                <button mat-icon-button ><mat-icon>create</mat-icon></button>
-                                
-                                <button mat-icon-button ><mat-icon>delete</mat-icon></button>
-
-                                <button mat-icon-button ><mat-icon>add</mat-icon></button>
+                                <mat-icon>clear</mat-icon>
                           
                           <mat-divider></mat-divider>
                       </mat-list-item>
@@ -103,7 +101,7 @@
 
       </div>
 
-        <mat-dialog-actions fxLayoutAlign="center center">
+          <mat-dialog-actions fxLayoutAlign="center center">
             <button mat-button matStepperPrevious>Back</button>
             <button mat-raised-button color="primary" matStepperNext>Next</button>
           </mat-dialog-actions>
@@ -111,40 +109,357 @@
     </mat-step>
     <mat-step>
       <!-- <ng-template matStepLabel>Done</ng-template> -->
-      <ng-template matStepLabel>Paso 3</ng-template>
-      You are now done.
-      <mat-dialog-actions >
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button matStepperNext>Next</button>
-          </mat-dialog-actions>
-      <!-- <div>
+      <ng-template matStepLabel>Participantes</ng-template>
+
+      <div class="dialog-subtitle"><h3 mat-dialog-title >Instructor</h3></div>
+      
+      <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
+
+                <div class="name-input" fxFlex="1 1 95%">
+                  
+                  <mat-form-field class="theme-name">
+                    <input matInput placeholder = "Instructor secundario" id="instructor" name="instructor">
+                  </mat-form-field>
+
+                </div>
+                
+                <div fxLayout="column" fxLayoutAlign="center center" fxFlex="1 1 5%">
+                  <button  mat-mini-fab color="primary" type="submit" *ngIf="!idTheme"><mat-icon>add</mat-icon></button>
+                </div>
+      </div> 
+
+      <div>
+
+
+                    <mat-list>
+                      <h3 mat-subheader>Themes</h3>
+
+                      <mat-list-item *ngFor="let theme of themes">
+
+                        <mat-icon mat-list-icon>book</mat-icon> 
+                                <h4 mat-line>{{theme.name}}</h4>
+                                <p mat-line> {{theme.description}} </p>
+                              
+                                <mat-icon>clear</mat-icon>
+                          
+                          <mat-divider></mat-divider>
+                      </mat-list-item>
+                    </mat-list>
+
+            </div> 
+        <div class="dialog-subtitle"><h3 mat-dialog-title >Estudiantes y Grupos</h3></div>
+
+        <div fxLayout="row" fxLayoutAlign="space-between start">
+
+          
+
+            <div fxFlex="1 1 50%" class="instructor-groups">
+              <mat-form-field class="theme-name">
+                <textarea matInput placeholder="Agregar estudiantes:"></textarea>
+              </mat-form-field>
+            </div>
+
+            <div fxFlex="1 1 50%" class="instructor-groups">
+            <mat-form-field class="theme-name">
+                  <input matInput placeholder = "Grupo" id="group" name="group">
+            </mat-form-field>
+          </div>
+        </div>
+        
+
+        
+
+        
+
+
+      <mat-dialog-actions fxLayoutAlign="center center">
         <button mat-button matStepperPrevious>Back</button>
-        <button mat-button (click)='stepper.reset()'>Reset</button>
-      </div> -->
+        <button mat-raised-button color="primary" matStepperNext>Next</button>
+       </mat-dialog-actions>
     </mat-step>
     <mat-step>
       <!-- <ng-template matStepLabel>Done</ng-template> -->
-      <ng-template matStepLabel>Paso 4</ng-template>
-      <!-- You are now done.
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button (click)='stepper.reset()'>Reset</button>
-      </div> -->
+      <ng-template matStepLabel>Eval</ng-template>
+        
+      <div class="dialog-subtitle"><h3 mat-dialog-title >Evaluaciones</h3></div>
+        <div fxLayout="column" fxLayoutAlign="start space-between">
+
+          <div>
+            <mat-form-field class="theme-name">
+                  <input matInput placeholder = "Nombre de la Evaluacion" id="evaluation" name="evaluation">
+            </mat-form-field>
+          </div>
+
+          <div>
+            <div>
+
+
+                    <mat-list>
+                      <h3 mat-subheader>Themes</h3>
+
+                      <mat-list-item *ngFor="let theme of themes">
+
+                        <mat-icon mat-list-icon>book</mat-icon> 
+                                <h4 mat-line>{{theme.name}}</h4>
+                                <p mat-line> {{theme.description}} </p>
+                              
+                                <mat-checkbox></mat-checkbox>
+                          
+                          <mat-divider></mat-divider>
+                      </mat-list-item>
+                    </mat-list>
+
+            </div> 
+          </div>
+
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="space-between start">
+
+          
+
+            <div fxFlex="1 1 50%" class="instructor-groups">
+              <mat-form-field class="theme-name">
+                <input matInput placeholder = "Fecha" id="date" name="date">
+              </mat-form-field>
+            </div>
+
+            <div fxFlex="1 1 50%" class="instructor-groups">
+            <mat-form-field class="theme-name">
+                  <input matInput placeholder = "Grupo" id="group" name="group">
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div fxLayoutAlign="end center">
+          <button mat-raised-button color="primary" matStepperNext>Agregar</button>
+        </div>
+
+
+        <div>
+
+
+                    <mat-list>
+                      <h3 mat-subheader>Themes</h3>
+
+                      <mat-list-item *ngFor="let theme of themes">
+
+                        <mat-icon mat-list-icon>book</mat-icon> 
+                                <h4 mat-line>{{theme.name}}</h4>
+                                <p mat-line> {{theme.description}} </p>
+                              
+                                <mat-icon>clear</mat-icon>
+                          
+                          <mat-divider></mat-divider>
+                      </mat-list-item>
+                    </mat-list>
+
+            </div> 
+
+
+
+        <mat-dialog-actions fxLayoutAlign="center center">
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-raised-button color="primary" matStepperNext>Next</button>
+       </mat-dialog-actions>
+
     </mat-step>
     <mat-step>
       <!-- <ng-template matStepLabel>Done</ng-template> -->
-      <ng-template matStepLabel>Paso 5</ng-template>
-      <!-- You are now done.
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button (click)='stepper.reset()'>Reset</button>
-      </div> -->
+      <ng-template matStepLabel>Horario</ng-template>
+      
+      <div class="dialog-subtitle"><h3 mat-dialog-title >Horario</h3></div>
+        <div fxLayout="column" fxLayoutAlign="start space-between"> 
+          <div fxLayout="row" fxLayoutAlign="space-between start">
+
+          
+
+            <div fxFlex="1 1 50%" class="instructor-groups">
+              <mat-form-field class="theme-name">
+                <input matInput placeholder = "Fecha de Inicio" id="date_ini" name="date_ini">
+              </mat-form-field>
+            </div>
+
+            <div fxFlex="1 1 50%" class="instructor-groups">
+            <mat-form-field class="theme-name">
+                  <input matInput placeholder = "Fecha de culminacion" id="date_cul" name="date_cul">
+            </mat-form-field>
+          </div>
+        </div>
+
+        </div>
+
+        
+        <div class="dialog-subtitle"><h3 mat-dialog-title >Dias</h3></div>
+
+        <div fxLayout="row" fxLayoutAlign="space-between center">  
+
+
+            <mat-checkbox class="example-margin" [(ngModel)]="lunes">Lunes</mat-checkbox>
+            <mat-checkbox class="example-margin" [(ngModel)]="martes">Martes</mat-checkbox>
+            <mat-checkbox class="example-margin" [(ngModel)]="miercoles">Miercoles</mat-checkbox>
+            <mat-checkbox class="example-margin" [(ngModel)]="jueves">Jueves</mat-checkbox>
+            <mat-checkbox class="example-margin" [(ngModel)]="viernes">Viernes</mat-checkbox>
+            <mat-checkbox class="example-margin" [(ngModel)]="sabado">Sabado</mat-checkbox>
+            <mat-checkbox class="example-margin" [(ngModel)]="domingo">Domingo</mat-checkbox>
+        </div>
+
+         <div fxLayout="row" fxLayoutAlign="space-between start" *ngIf="lunes">
+
+            <div fxFlex="1 1 20%" class="dialog-subtitle"><h3 mat-dialog-title >Lunes</h3></div>
+
+            <div fxFlex="1 1 40%" class="instructor-groups">
+              <mat-form-field class="theme-name">
+                <input matInput placeholder = "Hora de Inicio" id="lun_hour_ini" name="lun_hour_ini">
+              </mat-form-field>
+            </div>
+
+            <div fxFlex="1 1 40%" class="instructor-groups">
+            <mat-form-field class="theme-name">
+                  <input matInput placeholder = "Hora de culminacion" id="lun_hour_cul" name="lun_hour_cul">
+            </mat-form-field>
+
+          </div>
+
+        </div>
+
+          <div fxLayout="row" fxLayoutAlign="space-between start" *ngIf="martes">
+
+            <div fxFlex="1 1 20%" class="dialog-subtitle"><h3 mat-dialog-title >Martes</h3></div>
+
+            <div fxFlex="1 1 40%" class="instructor-groups">
+              <mat-form-field class="theme-name">
+                <input matInput placeholder = "Hora de Inicio" id="mar_hour_ini" name="mar_hour_ini">
+              </mat-form-field>
+            </div>
+
+            <div fxFlex="1 1 40%" class="instructor-groups">
+            <mat-form-field class="theme-name">
+                  <input matInput placeholder = "Hora de culminacion" id="mar_hour_cul" name="mar_hour_cul">
+            </mat-form-field>
+
+          </div>
+
+       
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="space-between start" *ngIf="miercoles">
+
+            <div fxFlex="1 1 20%" class="dialog-subtitle"><h3 mat-dialog-title >Miercoles</h3></div>
+
+            <div fxFlex="1 1 40%" class="instructor-groups">
+              <mat-form-field class="theme-name">
+                <input matInput placeholder = "Hora de Inicio" id="mie_hour_ini" name="mie_hour_ini">
+              </mat-form-field>
+            </div>
+
+            <div fxFlex="1 1 40%" class="instructor-groups">
+            <mat-form-field class="theme-name">
+                  <input matInput placeholder = "Hora de culminacion" id="mie_hour_cul" name="mie_hour_cul">
+            </mat-form-field>
+
+          </div>
+
+        </div>
+
+          <div fxLayout="row" fxLayoutAlign="space-between start" *ngIf="jueves">
+
+            <div fxFlex="1 1 20%" class="dialog-subtitle"><h3 mat-dialog-title >Jueves</h3></div>
+
+            <div fxFlex="1 1 40%" class="instructor-groups">
+              <mat-form-field class="theme-name">
+                <input matInput placeholder = "Hora de Inicio" id="jue_hour_ini" name="jue_hour_ini">
+              </mat-form-field>
+            </div>
+
+            <div fxFlex="1 1 40%" class="instructor-groups">
+            <mat-form-field class="theme-name">
+                  <input matInput placeholder = "Hora de culminacion" id="jue_hour_cul" name="jue_hour_cul">
+            </mat-form-field>
+
+          </div>
+        </div>
+
+          <div fxLayout="row" fxLayoutAlign="space-between start" *ngIf="viernes">
+
+            <div fxFlex="1 1 20%" class="dialog-subtitle"><h3 mat-dialog-title >Viernes</h3></div>
+
+            <div fxFlex="1 1 40%" class="instructor-groups">
+              <mat-form-field class="theme-name">
+                <input matInput placeholder = "Hora de Inicio" id="vie_hour_ini" name="vie_hour_ini">
+              </mat-form-field>
+            </div>
+
+            <div fxFlex="1 1 40%" class="instructor-groups">
+            <mat-form-field class="theme-name">
+                  <input matInput placeholder = "Hora de culminacion" id="vie_hour_cul" name="vie_hour_cul">
+            </mat-form-field>
+
+          </div>
+        </div>
+
+          <div fxLayout="row" fxLayoutAlign="space-between start" *ngIf="sabado">
+
+            <div fxFlex="1 1 20%" class="dialog-subtitle"><h3 mat-dialog-title >Sabado</h3></div>
+
+            <div fxFlex="1 1 40%" class="instructor-groups">
+              <mat-form-field class="theme-name">
+                <input matInput placeholder = "Hora de Inicio" id="sab_hour_ini" name="sab_hour_ini">
+              </mat-form-field>
+            </div>
+
+            <div fxFlex="1 1 40%" class="instructor-groups">
+            <mat-form-field class="theme-name">
+                  <input matInput placeholder = "Hora de culminacion" id="sab_hour_cul" name="sab_hour_cul">
+            </mat-form-field>
+
+          </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="space-between start" *ngIf="domingo">
+
+            <div fxFlex="1 1 20%" class="dialog-subtitle"><h3 mat-dialog-title >Domingo</h3></div>
+
+            <div fxFlex="1 1 40%" class="instructor-groups">
+              <mat-form-field class="theme-name">
+                <input matInput placeholder = "Hora de Inicio" id="dom_hour_ini" name="dom_hour_ini">
+              </mat-form-field>
+            </div>
+
+            <div fxFlex="1 1 40%" class="instructor-groups">
+            <mat-form-field class="theme-name">
+                  <input matInput placeholder = "Hora de culminacion" id="dom_hour_cul" name="dom_hour_cul">
+            </mat-form-field>
+
+          </div>
+
+        </div>
+
+        <mat-dialog-actions fxLayoutAlign="center center">
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-raised-button color="primary" matStepperNext>Next</button>
+       </mat-dialog-actions>
+
+    </mat-step>
+
+    <mat-step>
+      <!-- <ng-template matStepLabel>Done</ng-template> -->
+      <ng-template matStepLabel>Done</ng-template>
+
+        <mat-dialog-actions fxLayoutAlign="center center">
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-raised-button color="primary" matStepperNext>Next</button>
+       </mat-dialog-actions>
+
     </mat-step>
   </mat-horizontal-stepper>
+
+
+  </div>
 
 </mat-dialog-content>
 
 
-</div>
+
 
 
