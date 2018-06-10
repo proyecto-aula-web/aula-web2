@@ -7,16 +7,19 @@ export interface UserInterface {
   displayName: string;
   photoURL: string;
   provider: string;
+  id_course: string[];
+  groupId: string[];
 
 }
-
+/*
 export interface InstructorInterface extends UserInterface {
-  other?: string; /** eliminar */
+  other?: boolean;
+  id_course: string []; 
 }
-
+p
 export interface StudentInterface extends UserInterface {
-  grupoId: string;
+  grupoId: string [];
 
-}
+}*/
 
 

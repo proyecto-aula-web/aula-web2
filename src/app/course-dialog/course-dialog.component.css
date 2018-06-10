@@ -50,3 +50,8 @@ div.container{
 	height: 100%;
 	padding: 5px;
 }
+
+mat-slider {
+  width: 400px;
+  
+}

@@ -1,6 +1,4 @@
-import { InstructorInterface, StudentInterface } from './user';
-import { DayInterface } from './day';
-import { EvaluationInterface } from './evaluation';
+import { UserInterface } from './user';
 import { ThemeInterface } from './theme';
 import { InstitutionInterface } from './institution';
 
@@ -8,12 +6,11 @@ export interface CourseInterface {
   id: string;
   name: string;
   code: string;
+  email_owner: string;
+  instructors?: string [];
   institution: InstitutionInterface;
-  instructors?: InstructorInterface[];
-  stundens?: StudentInterface[];
-  schedule?: DayInterface[] /** horario */;
-  evaluations?: EvaluationInterface[];
-  themes?: ThemeInterface[];
+  groups?: string [];
+  themes?: string [];
   lastUpdate?: string;
 }
 

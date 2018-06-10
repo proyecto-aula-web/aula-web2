@@ -43,6 +43,7 @@ export class AppComponent implements OnDestroy {
   }
 
   ngOnInit() {
+    
     this.authService.getAuth().subscribe(auth => {
       if (auth) {
         this.isLogin = true;
