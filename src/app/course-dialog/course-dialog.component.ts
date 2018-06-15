@@ -1,6 +1,6 @@
 import { Component, OnInit , Inject} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import { ThemeService } from '../services/theme.service';
 import { ThemeInterface } from '../models/theme';
 
@@ -31,22 +31,22 @@ export class CourseDialogComponent implements OnInit {
   };
 
   public theme: ThemeInterface = {
-		id: '',
-  		id_course: '',
-  		name: '',
- 		description: '',
-  		subthemes: [],
-  		posts: [],
-	};
+    id: '',
+    id_course: '',
+    name: '',
+    description: '',
+    subthemes: [],
+    posts: [],
+  };
 
   public day: boolean;
   lunes = false;
 
   constructor(
-  	private _formBuilder: FormBuilder,
-  	private dialogRef: MatDialogRef<CourseDialogComponent>,
-  	private themeService: ThemeService,
-  	@Inject(MAT_DIALOG_DATA) public data) {}
+    private _formBuilder: FormBuilder,
+    private dialogRef: MatDialogRef<CourseDialogComponent>,
+    private themeService: ThemeService,
+    @Inject(MAT_DIALOG_DATA) public data) {}
 
   ngOnInit() {
     // this.firstFormGroup = this._formBuilder.group({
@@ -66,11 +66,11 @@ export class CourseDialogComponent implements OnInit {
     this.getThemes();
   }
 
-  close(){
-  	this.dialogRef.close();
+  close() {
+    this.dialogRef.close();
   }
 
-  getThemes(){
+  getThemes() {
     this.themeService.getAllThemes().subscribe(themes => this.themes = themes);
     console.log(this.themes);
   }

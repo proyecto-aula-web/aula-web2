@@ -1,8 +1,9 @@
-// import { Component, OnInit } from "@angular/core";
+// import { Component, OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { AuthService } from '../core/auth.service';
 import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material';
 import { CourseDialogComponent } from '../course-dialog/course-dialog.component';
+import { NewPostDialogComponent } from '../new-post-dialog/new-post-dialog.component';
 
 @Component({
   selector: 'au-user-profile',
@@ -15,18 +16,29 @@ export class UserProfileComponent  {
   constructor(public auth: AuthService,
   public dialog: MatDialog ) { }
 
-  ngOnInit() {
+  // ngOnInit() {
+  // }
+
+  openDialogCourse() {
+    console.log('Abir el boton de dialog');
+
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    // dialogConfig.data = {id: null};
+    this.dialog.open(CourseDialogComponent, dialogConfig);
   }
 
-  openDialogCourse(){
-  	console.log("Abir el boton de dialog");
 
-  	const dialogConfig = new MatDialogConfig();
+  openNewPostDialog() {
+    const dialogConfig = new MatDialogConfig();
 
-  	dialogConfig.disableClose = true;
-  	dialogConfig.autoFocus = true;
-  	//dialogConfig.data = {id: null};
-  	this.dialog.open(CourseDialogComponent, dialogConfig);
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    // dialogConfig.height = '600px';
+    // dialogConfig.data = {id: null};
+    this.dialog.open(NewPostDialogComponent, dialogConfig);
   }
 
 }
