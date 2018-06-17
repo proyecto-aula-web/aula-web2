@@ -31,9 +31,10 @@ import { FormsModule } from '@angular/forms';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { CourseDialogComponent } from './course-dialog/course-dialog.component';
-import { NewPostDialogComponent, MyTelInput } from './new-post-dialog/new-post-dialog.component';
+import { NewPostDialogComponent } from './new-post-dialog/new-post-dialog.component';
 
 import { ImageCompressService, ResizeOptions, ImageUtilityService } from 'ng2-image-compress';
+import { FlashMessagesModule } from 'angular2-flash-messages';
 
 // import { CdkTableModule } from "@angular/cdk/table";
 
@@ -50,8 +51,7 @@ import { ImageCompressService, ResizeOptions, ImageUtilityService } from 'ng2-im
     ThemeDialogComponent,
     NavigationBarComponent,
     CourseDialogComponent,
-    NewPostDialogComponent,
-    MyTelInput
+    NewPostDialogComponent
   ],
   imports: [
     // CdkTableModule,
@@ -64,7 +64,8 @@ import { ImageCompressService, ResizeOptions, ImageUtilityService } from 'ng2-im
     BrowserAnimationsModule,
     DemoMaterialModule,
     FormsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    FlashMessagesModule.forRoot()
   ],
   providers: [
     AuthService,

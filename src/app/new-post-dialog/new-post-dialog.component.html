@@ -33,9 +33,7 @@
             <mat-form-field class="example-full-width">
               <textarea matInput placeholder="Escribe aqui..." formControlName="description"></textarea>
             </mat-form-field>
-            <mat-form-field class="example-full-width">
-              <input matInput type="text" [(value)]="formNumberValue.area">
-            </mat-form-field>
+
             <div fxLayoutAlign="end end">
               <label class="npd-label-button" for="inputImage" matTooltip="Agregar Imagen">
                 <mat-icon aria-label="add photo" class='primary'>camera_alt</mat-icon>
@@ -56,38 +54,38 @@
               </div>
             </div>
           </form>
+          <mat-list *ngIf='ListTask.length > 0'>
+            <h3 mat-subheader>Imagenes</h3>
+            <mat-list-item *ngFor="let task of ListTask">
+              <mat-icon *ngIf="!task.response" mat-list-icon>image</mat-icon>
+              <img *ngIf="task.response" matListAvatar class="npd-avatar" [src]="task.response.downloadURL" alt="task.name">
+              <h4 mat-line *ngIf="task.snapshot | async as snap" >{{task.name}} - <span class="npd-percent60">{{snap.bytesTransferred}} byets de {{snap.totalBytes}}</span> </h4>
+              <mat-progress-bar matLine *ngIf="task.snapshot | async as snap" [color]="task.progressBar.color" [mode]="task.progressBar.mode" [value]="(snap.bytesTransferred === 0)? snap.bytesTransferred : (snap.bytesTransferred*100)/snap.totalBytes" [bufferValue]="(snap.bytesTransferred === 0)? snap.bytesTransferred +10 : (snap.bytesTransferred*100)/snap.totalBytes"></mat-progress-bar>
+              <button mat-icon-button (click)="deleteCancel(task)">
+                <mat-icon aria-label="delete">clear</mat-icon>
+              </button>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+          </mat-list>
+          <mat-list *ngIf='ListTaskAttachment.length > 0'>
+            <h3 mat-subheader>Archivos</h3>
+            <mat-list-item *ngFor="let task of ListTaskAttachment">
+              <mat-icon  mat-list-icon>attachment</mat-icon>
+              <!-- <img *ngIf="task.response" matListAvatar class="npd-avatar" [src]="task.response.downloadURL" alt="task.name"> -->
+              <h4 mat-line *ngIf="task.snapshot | async as snap">{{task.name}} -
+                <span class="npd-percent60">{{snap.bytesTransferred}} byets de {{snap.totalBytes}}</span>
+              </h4>
+              <mat-progress-bar matLine *ngIf="task.snapshot | async as snap" [color]="task.progressBar.color" [mode]="task.progressBar.mode"
+                [value]="(snap.bytesTransferred === 0)? snap.bytesTransferred : (snap.bytesTransferred*100)/snap.totalBytes" [bufferValue]="(snap.bytesTransferred === 0)? snap.bytesTransferred +10 : (snap.bytesTransferred*100)/snap.totalBytes"></mat-progress-bar>
+              <button mat-icon-button>
+                <mat-icon aria-label="delete">clear</mat-icon>
+              </button>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+          </mat-list>
         </div>
-        <mat-list *ngIf='ListTask.length > 0'>
-          <h3 mat-subheader>Imagenes</h3>
-          <mat-list-item *ngFor="let task of ListTask">
-            <mat-icon *ngIf="!task.response" mat-list-icon>image</mat-icon>
-            <img *ngIf="task.response" matListAvatar class="npd-avatar" [src]="task.response.downloadURL" alt="task.name">
-            <h4 mat-line *ngIf="task.snapshot | async as snap" >{{task.name}} - <span class="npd-percent60">{{snap.bytesTransferred}} byets de {{snap.totalBytes}}</span> </h4>
-            <mat-progress-bar matLine *ngIf="task.snapshot | async as snap" [color]="task.progressBar.color" [mode]="task.progressBar.mode" [value]="(snap.bytesTransferred === 0)? snap.bytesTransferred : (snap.bytesTransferred*100)/snap.totalBytes" [bufferValue]="(snap.bytesTransferred === 0)? snap.bytesTransferred +10 : (snap.bytesTransferred*100)/snap.totalBytes"></mat-progress-bar>
-            <button mat-icon-button (click)="deleteCancel(task)">
-              <mat-icon aria-label="delete">clear</mat-icon>
-            </button>
-          </mat-list-item>
-          <mat-divider></mat-divider>
-        </mat-list>
-        <mat-list *ngIf='ListTaskAttachment.length > 0'>
-          <h3 mat-subheader>Archivos</h3>
-          <mat-list-item *ngFor="let task of ListTaskAttachment">
-            <mat-icon  mat-list-icon>attachment</mat-icon>
-            <!-- <img *ngIf="task.response" matListAvatar class="npd-avatar" [src]="task.response.downloadURL" alt="task.name"> -->
-            <h4 mat-line *ngIf="task.snapshot | async as snap">{{task.name}} -
-              <span class="npd-percent60">{{snap.bytesTransferred}} byets de {{snap.totalBytes}}</span>
-            </h4>
-            <mat-progress-bar matLine *ngIf="task.snapshot | async as snap" [color]="task.progressBar.color" [mode]="task.progressBar.mode"
-              [value]="(snap.bytesTransferred === 0)? snap.bytesTransferred : (snap.bytesTransferred*100)/snap.totalBytes" [bufferValue]="(snap.bytesTransferred === 0)? snap.bytesTransferred +10 : (snap.bytesTransferred*100)/snap.totalBytes"></mat-progress-bar>
-            <button mat-icon-button>
-              <mat-icon aria-label="delete">clear</mat-icon>
-            </button>
-          </mat-list-item>
-          <mat-divider></mat-divider>
-        </mat-list>
       </mat-tab>
-      <mat-tab label="Avanzada">
+      <mat-tab label="Avanzada" disabled>
         <div class="npd-padding">
           <form class="example-form" [formGroup]='advancedForm'>
             <mat-form-field class="example-full-width">
@@ -127,7 +125,8 @@
 
 </div>
 
-<div mat-dialog-actions>
-    <button mat-button color="primary" submit="">Publicar</button>
+<div mat-dialog-actions fxLayoutAlign="end end">
+    <mat-progress-spinner *ngIf='imageLoading' class="example-margin" [color]="color" [mode]="mode" [diameter]="diameter"></mat-progress-spinner>
+    <button mat-button color="primary" (click)='sumitForm()'>Publicar</button>
 </div>
 

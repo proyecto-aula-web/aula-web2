@@ -5,7 +5,9 @@ import { ImageCompressService, ResizeOptions, ImageUtilityService, IImage, Sourc
 import { AngularFireStorageModule, AngularFireUploadTask, AngularFireStorage } from 'angularfire2/storage';
 import { Observable } from 'rxjs';
 import { ImageHandlerService } from '../services/image/image-handler.service';
-// import { constants } from '../';
+import { PostInterface } from '../models/post';
+import { PostService } from '../services/post.service';
+import { md5 } from '../md5/md5';
 
 @Component({
   selector: 'au-new-post-dialog',
@@ -13,13 +15,8 @@ import { ImageHandlerService } from '../services/image/image-handler.service';
   styleUrls: ['./new-post-dialog.component.css']
 })
 export class NewPostDialogComponent implements OnInit {
-  formNumberValue: MyTel = {
-    // area: string, public exchange: string, public subscriber
-    area: '00',
-    exchange: '00',
-    subscriber: '00'
-  };
 
+  // post: PostInterface;
   simpleForm: FormGroup;
   advancedForm: FormGroup;
 
@@ -80,18 +77,13 @@ export class NewPostDialogComponent implements OnInit {
     private imgCompressService: ImageCompressService,
     private storage: AngularFireStorage,
     private ImageHandler: ImageHandlerService,
+    private postService: PostService
     // private custonFormFiedl: MyTelInput,
   ) {}
 
   ngOnInit() {
     this.simpleForm = this._formBuilder.group({
       description: [''],
-      check: false,
-      // parts: this._formBuilder.group({
-        area: [''],
-        exchange: [''],
-        subscriber: ['']
-      // })
     });
 
     // this.simpleForm = this._formBuilder.group({
@@ -110,17 +102,78 @@ export class NewPostDialogComponent implements OnInit {
   }
 
   sumitForm() {
+    console.log('data', this.data);
+    let post: PostInterface;
+    const date = new Date().getTime();
     const description = this.simpleForm.get('description');
-    const check = this.simpleForm.get('check');
+    const id = md5(`${this.data.user} ${this.data.courseId} ${date}`);
+    const user = this.data.user;
+    // const createdDate;
+    // const description;
+    const media: { type: string; id?: string; downloadURL: string }[] = [];
+    const attachtment: { type: string; id?: string; downloadURL: string }[] = [];
+    let aux: { type: string; id?: string; downloadURL: string };
 
-    console.log('description: ', description);
-    console.log('description: ', description.value);
-    // console.log('check: ', check);
-    // console.log('check: ', check.value);
+    if (this.ListTask.length > 0) {
+      for (let i = 0; i < this.ListTask.length; i++) {
+        const element = this.ListTask[i];
+        console.log('elemenent', element, element.id, element.type);
+        aux = {
+          type : element.type,
+          id : element.id,
+          downloadURL: element.response.downloadURL
+        };
+        media.push(aux);
+      }
+    }
+
+    if (this.ListTaskAttachment.length > 0) {
+      for (let i = 0; i < this.ListTaskAttachment.length; i++) {
+        const element = this.ListTaskAttachment[i];
+        console.log('elemenent', element, element.id, element.type);
+        aux = {
+          type: element.type,
+          id: element.id,
+          downloadURL: element.response.downloadURL
+        };
+        attachtment.push(aux);
+      }
+    }
+
+
+    post = {
+      id: id,
+      user: user,
+      createdDate: date,
+      description: description.value,
+    };
+
+    if (media.length > 0) {
+      post.media = media;
+    }
+
+    if (attachtment.length > 0) {
+      post.attachtment = attachtment;
+    }
+
+    if (post.description === '' && !post.media && !post.attachtment) {
+      console.log('Publicacion Vacia');
+      this.close(false);
+      return ;
+    }
+
+    console.log('Post', post);
+
+    this.postService.addNewPost(post);
+    this.close(true);
   }
 
-  close() {
-    this.dialogRef.close();
+  close(response?: any) {
+    if (response) {
+      this.dialogRef.close(response);
+    } else {
+      this.dialogRef.close();
+    }
   }
 
   onChange(fileInput: any) {
@@ -185,13 +238,13 @@ export class NewPostDialogComponent implements OnInit {
     }
 
     // the storage path
+    const id = md5(`${new Date().getTime()}_${file.name}`);
     const parts = file.name.split('.');
-    const path = `${parts[parts.length - 1]}/${new Date().getTime()}_${
-      file.name
-    }`;
+    const type = parts[parts.length - 1];
+    const path = `${type}/${id}`;
 
     //  Totally optional metada
-    const customMetadata = { app: 'My AngularFire-powered PWA!' };
+    const customMetadata = { name: file.name };
 
     // The main task
     // this.task = this.storage.upload(path, file, {customMetadata});
@@ -227,7 +280,9 @@ export class NewPostDialogComponent implements OnInit {
     });
 
     const currentTask: UploadTask = {
+      id:  id,
       name: name,
+      type: type,
       task: task,
       percentage: percentage,
       snapshot: snapshot,
@@ -249,13 +304,12 @@ export class NewPostDialogComponent implements OnInit {
     // }
 
     // the storage path
-
+    const id = md5(`${new Date().getTime()}_${file.name}`);
     const parts = file.name.split('.');
-    const path = `${parts[parts.length - 1]}/${new Date().getTime()}_${
-      file.name
-    }`;
+    const type = parts[parts.length - 1];
+    const path = `${type}/${id}`;
     //  Totally optional metada
-    const customMetadata = { app: 'My AngularFire-powered PWA!' };
+    const customMetadata = { name: file.name };
 
     console.log(this.storage.ref(path));
     // console.log(this.storage.ref(path));
@@ -268,19 +322,21 @@ export class NewPostDialogComponent implements OnInit {
     // let response;
 
     task.then(res => {
-      for (let i = 0; i < this.ListTask.length; i++) {
-        if (this.ListTask[i].name === name) {
-          this.ListTask[i].response = res;
+      for (let i = 0; i < this.ListTaskAttachment.length; i++) {
+        if (this.ListTaskAttachment[i].name === name) {
+          this.ListTaskAttachment[i].response = res;
 
-          console.log(name, this.ListTask[i]);
-          const r = this.storage.ref(this.ListTask[i].path);
-          console.log(this.ListTask[i]);
+          console.log(name, this.ListTaskAttachment[i]);
+          const r = this.storage.ref(this.ListTaskAttachment[i].path);
+          console.log(this.ListTaskAttachment[i]);
         }
       }
     });
 
     const currentTask: UploadTask = {
+      id: id,
       name: name,
+      type: type,
       task: task,
       percentage: percentage,
       snapshot: snapshot,
@@ -333,7 +389,9 @@ export class NewPostDialogComponent implements OnInit {
 
 
 export interface UploadTask {
+  id: string;
   name: string;
+  type: string;
   task: AngularFireUploadTask;
   percentage: Observable<number>;
   snapshot: Observable<any>;
