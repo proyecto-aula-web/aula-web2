@@ -2,25 +2,32 @@
  Proyecto para la materia de **Ingenieria del Software**  de la Universidad de los Andes (ULA), Merida, Venezuela
  Aula es tu entorno educacional digital. Una plataforma para la educacion que reune a estudiantes y educadores en torno a conversaciones
  ***
+
   # Documentacion
   # Requisitos
   1. Sobre usuarios
-    1.1 La plataforma debe permitir crear usuarios.
-    1.2  Los usuarios pueden cumplir dos roles dentro de la plataforma, pueden ser instructores o pueden ser estudiantes. 
-    1.3 El usuario que crea el curso se convierte inmediatamente en un Instructor.
-    1.4 El Usuario instructor puede agregar otros instructores con quienes compartirán el espacio del curso. 
-    1.5 El instructor debe ser quien agregue a los estudiantes al curso (agregar o eliminar estudiantes) 
-    1.6 El instructor es quien debe crear la estructura del curso. Agrega los temas, subtemas, recursos y organiza de una manera sencilla el curso a dictar. 
+     1.1 La plataforma debe permitir crear usuarios.
+     1.2  Los usuarios pueden cumplir dos roles dentro de la plataforma, pueden ser instructores o pueden ser estudiantes. 
+     1.3 El usuario que crea el curso se convierte inmediatamente en un Instructor.
+     1.4 El Usuario instructor puede agregar otros instructores con quienes compartirán el espacio del curso. 
+     1.5 El instructor debe ser quien agregue a los estudiantes al curso (agregar o eliminar estudiantes) 
+     1.6 El instructor es quien debe crear la estructura del curso. Agrega los temas, subtemas, recursos y organiza de una manera sencilla el curso a dictar. 
 
  2. Sobre la estructura princial de la Plataforma
-    2.1 Un curso debe ser una espacio colaborativo donde se encuentren los estudiantes y los instructores (al menos un instructor). 
+    2.1 Un curso debe ser una espacio colaborativo donde se encuentren los estudiantes y los instructores  (al menos un instructor). 
     2.2 La estructura principal de un curso debe ser una lista completa de los temas que se verán durante el curso. 
     2.3 La estructura de un curso debe ser siempre visible para los participantes (instructores y estudiantes). y de fácil acceso. 
     2.4 Un tema debe ser visto como una unidad independiente dentro de la estructura del curso. 
     2.5 Un tema puede contener subtemas.
     2.6 A cada tema se le debe poder agregar contenido relacionado con el tema
     2.7 Los contenidos se deben agregar como publicaciones, en los que se deben poder adjuntar cualquier tipo de archivo de texto, educativo (Word, pdf, powerpoint,..), y archivos multimedia. 
-    2.8 Se deben predefinir categorías que ayuden a mantener cierto orden entre los contenidos publicados. Algunas categorías sugeridas son: Clase digitalizada, Guía explicativa, Guía de Ejercicios,Información relacionada, de interés, o curiosidades relacionadas, Video Explicativo – (Link de enlace a un video que explique el tema), Tareas (propuestas por el instructor), Actividades (Propuestas por el instructor).
+    2.8 Se deben predefinir categorías que ayuden a mantener cierto orden entre los contenidos publicados. Algunas categorías sugeridas son:
+        * Clase digitalizada.
+        * Guía explicativa
+        * Guía de Ejercicios 
+        * Información relacionadade interéso curiosidades relacionadas.
+        * Video Explicativo – (Link de enlace a un video que explique el tema), Tareas (propuestas por el instructor).
+        * Actividades (Propuestas por el instructor).
     2.9 El instructor debe poder crear un plan de evaluación donde identifique y relacione los temas con las evaluaciones. Dicho plan de evaluación al igual que la estructura del curso siempre debe estar visible para todos los usuarios (instructores y estudiantes).
     2.10 El instructor debe poder llevar un control sobre las notas que obtenga cada estudiante en cada evaluación dentro del curso. Ese control al que se puede asociar con una lista de notas solo debe visible como un todo por el instructor. Para cada estudiante solo debe ser visible sus calificaciones. 
     2.11 Las publicaciones deben estar identificadas: el nombre y el tipo de usuario que la realizo. 
@@ -42,9 +49,9 @@
     3.7 La plataforma debe tener un sistema que notifique a los estudiantes cuando el instructor hace un cambio en el plan de evaluación, es decir, con las fechas de las evaluaciones. 
 
 4. Sobre las herramientas para los estudiantes
-    4.1 La plataforma debe mantener a los estudiantes actualizados con las evaluaciones pendientes a través de notificaciones. 
-    4.2 Los estudiantes deben tener un espacio donde puedan ver sus notas acumuladas en el curso y sus asistencias.
-    4.3 La plataforma debe incentivar a que los estudiantes a que interactúen y participen en la creación de contenido asociados a los temas, desarrollando así la educación colaborativa.
+   4.1 La plataforma debe mantener a los estudiantes actualizados con las evaluaciones pendientes a través de notificaciones. 
+   4.2 Los estudiantes deben tener un espacio donde puedan ver sus notas acumuladas en el curso y sus asistencias.
+   4.3 La plataforma debe incentivar a que los estudiantes a que interactúen y participen en la creación de contenido asociados a los temas, desarrollando así la educación colaborativa.
 
 ## Iteracion Actual
 ## Tabla de Componentes-Requisitos
@@ -61,7 +68,7 @@
 
   | Compoenent | *Rquisito*       | *Tareas* | *Quien*  | *Estado* (No Iniciada, En Proceso,Completada) |
   | ---------- | ---------------- |:--------:| :------- | --------------------------------------------- |
-  |     |     |    |    |
+  |    |     |    |    |
   |    |     |    |    |
   |    |     |    |    |
     
