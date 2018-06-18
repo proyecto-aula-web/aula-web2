@@ -89,24 +89,51 @@
 ## Tabla de Componentes-Requisitos
 | Component | Descripcion | Requisitos Asociados |
 | :--------- | -------------------- | --- |
-|  Login Component | Iniciar sesion en la plataforma   | [usr-01](#usr-01)  |        
-|  Logup Component | Registrarse en la plataforma   | [usr-01](#usr-01)  | 
+|  signin Component | Iniciar sesion en la plataforma   | [usr-01](#usr-01)  |        
+|  signup Component | Registrarse en la plataforma   | [usr-01](#usr-01)  | 
 |  new-course Component | Crear un nuevo curso en la plataforma   | [usr-03](#usr-03), [usr-04](#usr-04), [usr-05](#usr-05), [usr-06](#usr-06), [pla-01](#pla-01) | 
 |  new-theme Component | Crear temas dentro de un curso | [usr-06](#usr-06) | 
 |  new-post Component | Crear publicaciones dentro de un tema   |  [cur-06](#cur-06), [cur-07](#cur-07), [cur-08](#cur-08) | 
 
+## Arbol de components
+> Muestra la anidacion de los components
+
+- AppComponent
+  - signin Component
+  - signup Component
+  - home Component
+    - new-course Compoenent
+      - new-theme Compoenent
+    - new-post Component
+    - list-course  Component
+    - post Component
+  - course Component
+    - list-theme Component
+    - theme Component
+    - post Component
+  - theme Component
+    - post Component
+
+  
 
 ## Lista de tareas de la intetacion (Spring Backlog)
 
   | Compoenent | *Rquisito*       | *Tareas* | *Quien*  | *Estado* (No Iniciada, En Proceso,Completada) |
   | ---------- | ---------------- |:--------| :------- | --------------------------------------------- |
-  | list-course Component | [cur-02](#cur-02) | [Tarea_17062018_01](#Tarea_17062018_01) |  | No iniciacia |
-  | List-theme Component |  | [Tarea_17062018_02](#Tarea_17062018_02) |    | No iniciada |
-  |    |     |    |    |
+  | new-post Component |  [cur-08](#cur-08)  |  [Tarea-16062018-01](#Tarea-16062018-01)  |    | No iniciacia |
+  | list-course Component |  | [Tarea-17062018-01](#Tarea-17062018-01) |  | No iniciacia |
+  | list-theme Component | [cur-02](#cur-02), [cur-03](#cur-03) | [Tarea-17062018-02](#Tarea-17062018-02) |    | No iniciada |
+  | course Component | [cur-01](#cur-01) |    |    | No iniciacia |
+  | theme Component | [cur-04](#cur-04), [cur-02](#cur-05), [cur-06](#cur-06) |    |    | No iniciacia |
+  | post Component | [cur-06](#cur-06), [cur-07](#cur-07), [cur-08](#cur-08)  |    |    | No iniciacia |
   
 ### Descripcion Tareas
 
-#### Tarea_17062018_01    
+#### Tarea-16062018-01
+- Agregar los #hashtags predefinidos para que el usuario los seleccione al hacer una publicacion
+- Agegegar un campo de texto donde el usuario pueda agregar categorias o hashtgas personalizados
+- Las categorias deben ser representadas por #hashtags
+#### Tarea-17062018-01    
 - Lista de todos los cursos a los que un usuario pertenece.
 - Cada item debe redireccionar a la pagina principal del curso
 - En cada item se debe mostrar informacion minima del curso, como:
@@ -115,7 +142,7 @@
   - Si es un curso activo
   - Si hay publicaciones recientes
 
-#### Tarea_17062018_02
+#### Tarea-17062018-02
 - Lista de de todos los temas que pertenecen a un curso.
 - Se debe mostrar dentro de la pagina principal del curso al que pertenece. 
 - Debe redirigir a la pagina principal del tema
