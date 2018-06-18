@@ -121,11 +121,11 @@
   | Compoenent | *Rquisito*       | *Tareas* | *Quien*  | *Estado* (No Iniciada, En Proceso,Completada) |
   | ---------- | ---------------- |:--------| :------- | --------------------------------------------- |
   | new-post Component |  [cur-08](#cur-08)  |  [Tarea-16062018-01](#Tarea-16062018-01)  |    | No iniciacia |
-  | list-course Component |  | [Tarea-17062018-01](#Tarea-17062018-01) |  | No iniciacia |
-  | list-theme Component | [cur-02](#cur-02), [cur-03](#cur-03) | [Tarea-17062018-02](#Tarea-17062018-02) |    | No iniciada |
+  | list-course Component |  | [tarea-17062018-01](#tarea-17062018-01) |  | No iniciacia |
+  | list-theme Component | [cur-02](#cur-02), [cur-03](#cur-03) | [tarea-17062018-02](#tarea-17062018-02) |    | No iniciada |
   | course Component | [cur-01](#cur-01) |    |    | No iniciacia |
   | theme Component | [cur-04](#cur-04), [cur-02](#cur-05), [cur-06](#cur-06) |    |    | No iniciacia |
-  | post Component | [cur-06](#cur-06), [cur-07](#cur-07), [cur-08](#cur-08)  |    |    | No iniciacia |
+  | post Component | [cur-06](#cur-06), [cur-07](#cur-07), [cur-08](#cur-08)  | [tarea-18062018-01](#tarea-18062018-01) |  @jesusdpp96  | **En Proceso** |
   
 ### Descripcion Tareas
 
@@ -133,7 +133,8 @@
 - Agregar los #hashtags predefinidos para que el usuario los seleccione al hacer una publicacion
 - Agegegar un campo de texto donde el usuario pueda agregar categorias o hashtgas personalizados
 - Las categorias deben ser representadas por #hashtags
-#### Tarea-17062018-01    
+
+#### tarea-17062018-01    
 - Lista de todos los cursos a los que un usuario pertenece.
 - Cada item debe redireccionar a la pagina principal del curso
 - En cada item se debe mostrar informacion minima del curso, como:
@@ -142,10 +143,19 @@
   - Si es un curso activo
   - Si hay publicaciones recientes
 
-#### Tarea-17062018-02
+#### tarea-17062018-02
 - Lista de de todos los temas que pertenecen a un curso.
 - Se debe mostrar dentro de la pagina principal del curso al que pertenece. 
 - Debe redirigir a la pagina principal del tema
+
+#### tarea-18062018-01
+- Debe ser el component que muestre una publicacion hecha por un usuario (intructor o estudiante)
+- Debe Mostar toda la informacion agregada por el usuario
+  - Texto
+  - Imagenes
+  - otros archivos adjuntos
+- Debe Permitir hacer comentarios y mostrarlos
+
 
 ## Tablero de Tareas
 | No Planificado | Mejora Continua      |
@@ -154,7 +164,7 @@
 
 | Pendiente | En curso | Hecho  |
 |---------- | -------- | ------ |
-|  |  |  |
+| [tarea-16062018-01](#tarea-16062018-01), [tarea-17062018-01](#tarea-17062018-01), [tarea-17062018-02](#tarea-17062018-02) | [tarea-18062018-01](#tarea-18062018-01)  |  |
 
 ## Impediementos
 | Pendiente | En curso | Hecho  |
