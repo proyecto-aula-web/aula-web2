@@ -26,7 +26,7 @@ div.name-input{
 	height: auto;
 }
 
-div.header dialog{ 
+div.header dialog{
 	text-align: center;
 }
 
@@ -53,5 +53,9 @@ div.container{
 
 mat-slider {
   width: 400px;
-  
+
+}
+
+div.button {
+  margin-top: 20px;
 }

@@ -1,5 +1,5 @@
 export interface DayInterface {
   day: string;
-  duration: { InitHour: Number; FinishHour: Number }[];
+  duration: { InitHour: string; FinishHour: string};
 
 }

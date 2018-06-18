@@ -31,6 +31,8 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { CourseDialogComponent } from './course-dialog/course-dialog.component';
 
+import { FlashMessagesModule, FlashMessagesService } from 'angular2-flash-messages';
+
 // import { CdkTableModule } from "@angular/cdk/table";
 
 
@@ -59,8 +61,9 @@ import { CourseDialogComponent } from './course-dialog/course-dialog.component';
     DemoMaterialModule,
     FormsModule,
     FlexLayoutModule,
+    FlashMessagesModule,
   ],
-  providers: [AuthService, AuthGuard, ThemeService,
+  providers: [AuthService, AuthGuard, ThemeService, FlashMessagesService,
   { provide: FirebaseOptionsToken, useValue: environment.firebase }],
   entryComponents: [AppComponent, ThemeDialogComponent, DeleteThemeDialogComponent, CourseDialogComponent],
   bootstrap: [AppComponent]
