@@ -34,7 +34,6 @@ import { CourseDialogComponent } from './course-dialog/course-dialog.component';
 import { NewPostDialogComponent } from './new-post-dialog/new-post-dialog.component';
 
 import { ImageCompressService, ResizeOptions, ImageUtilityService } from 'ng2-image-compress';
-import { FlashMessagesModule } from 'angular2-flash-messages';
 
 // import { CdkTableModule } from "@angular/cdk/table";
 
@@ -64,8 +63,7 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
     BrowserAnimationsModule,
     DemoMaterialModule,
     FormsModule,
-    FlexLayoutModule,
-    FlashMessagesModule.forRoot()
+    FlexLayoutModule
   ],
   providers: [
     AuthService,
@@ -73,7 +71,7 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
     ThemeService,
     { provide: FirebaseOptionsToken, useValue: environment.firebase },
     ImageCompressService,
-    ResizeOptions
+    ResizeOptions,
   ],
   entryComponents: [
     AppComponent,
