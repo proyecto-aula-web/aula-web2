@@ -80,7 +80,7 @@
 							</div>
 
 							<div fxLayout="column" fxLayoutAlign="center center" fxFlex="1 1 5%">
-								<button mat-mini-fab color="primary" type="submit" (click)="addTheme()"><mat-icon>add</mat-icon></button>
+								<button mat-mini-fab color="primary" type="submit" (click)=" addTheme() "><mat-icon>add</mat-icon></button>
 							</div>
 
 						</div>
@@ -189,13 +189,6 @@
 									<button mat-mini-fab color="primary" type="submit" (click)="addGroup()"><mat-icon>add</mat-icon></button>
 								</div>
 
-							</div>
-
-							<div>
-								<mat-accordion>
-
-
-								</mat-accordion>
 							</div>
 
 						</mat-card-content>
@@ -315,13 +308,13 @@
 
 
 						<mat-list>
-							<h3 mat-subheader>Evaluaciones</h3>
+							<h3 mat-subheader *ngIf=" evaluations.length!==0">Evaluaciones</h3>
 
 							<mat-list-item *ngFor=" let evaluation of evaluations">
 
 								<mat-icon mat-list-icon>book</mat-icon>
 								<h4 mat-line>{{evaluation.name}}</h4>
-
+								<p mat-line ><span *ngFor=" let theme of evaluation.themes" > {{theme}}</span> <span> | Porcentaje: {{evaluation.percent}} | Grupo :<span *ngFor=" let group of groups"> <span *ngIf=" evaluation.groupId == group.id "> {{group.name}}</span></span></span></p>
 								<button mat-icon-button  (click)="deleteEvaluation(evaluation.id)"><mat-icon>clear</mat-icon></button>
 
 								<mat-divider></mat-divider>

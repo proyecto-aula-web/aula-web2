@@ -11,7 +11,7 @@ export interface CourseInterface {
   institution: InstitutionInterface;
   groups?: string [];
   themes?: string [];
-  lastUpdate?: string;
+  lastUpdate?: Date;
 }
 
 export interface ItemCourseInterface {

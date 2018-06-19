@@ -3,7 +3,7 @@ export interface EvaluationInterface {
   themes: string[];
   name: string;
   description: string;
-  groupId: string[];
+  groupId: string;
   date: Date;
   percent: Number;
 }

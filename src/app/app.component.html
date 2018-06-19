@@ -52,7 +52,7 @@
     
     <mat-sidenav #snav class="menu-sidenav" *ngIf="isLogin"  [opened]="screenWidth > 840" [mode]="(screenWidth > 840) ? 'side' : 'over'">
       <mat-nav-list>
-        <a mat-list-item *ngFor="let nav of fillerNav">{{nav}}</a>
+        <mat-card mat-list-item *ngFor="let nav of fillerNav">{{nav}}</mat-card>
       </mat-nav-list>
     </mat-sidenav>
   
