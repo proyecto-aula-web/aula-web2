@@ -125,7 +125,8 @@
   | list-theme Component | [cur-02](#cur-02), [cur-03](#cur-03) | [tarea-17062018-02](#tarea-17062018-02) |    | No iniciada |
   | course Component | [cur-01](#cur-01) |    |    | No iniciacia |
   | theme Component | [cur-04](#cur-04), [cur-02](#cur-05), [cur-06](#cur-06) |    |    | No iniciacia |
-  | post Component | [cur-06](#cur-06), [cur-07](#cur-07), [cur-08](#cur-08)  | [tarea-18062018-01](#tarea-18062018-01) |  @jesusdpp96  | **En Proceso** |
+  | post Component | [cur-06](#cur-06), [cur-07](#cur-07), [cur-08](#cur-08)  | [tarea-18062018-01](#tarea-18062018-01) |  @jesusdpp96  | **Completada** |
+  | post Component | [cur-06](#cur-06), [cur-07](#cur-07), [cur-08](#cur-08)  | [tarea-21062018-01](#tarea-21062018-01) |   | No iniciada |
   
 ### Descripcion Tareas
 
@@ -154,17 +155,26 @@
   - Texto
   - Imagenes
   - otros archivos adjuntos
-- Debe Permitir hacer comentarios y mostrarlos
 
+#### tarea-21062018-01
+  - Agregar funcionalidad de comentarios en el Post Component
+    - Cualquier usuario (dentro del curso) debe poder hacer comentarios a un post
+    - Los comentarios deben hacerse y mostarse desde un dialogo
+
+#### tarea-21062018-02
+  - Crear el home Component
+    - Este es el componente principal donde se veran los cursos a los que pertenece un usuario
+    - Desde donde el usuario puede iniciar y crear un curso
+    
 
 ## Tablero de Tareas
 | No Planificado | Mejora Continua      |
 | -------------- | -------------------- |
-|  |  |
+| [tarea-21062018-02](#tarea-21062018-02)  |  |
 
 | Pendiente | En curso | Hecho  |
 |---------- | -------- | ------ |
-| [tarea-16062018-01](#tarea-16062018-01), [tarea-17062018-01](#tarea-17062018-01), [tarea-17062018-02](#tarea-17062018-02) | [tarea-18062018-01](#tarea-18062018-01)  |  |
+| [tarea-16062018-01](#tarea-16062018-01), [tarea-17062018-01](#tarea-17062018-01), [tarea-17062018-02](#tarea-17062018-02) | [tarea-21062018-02](#tarea-21062018-02) | [tarea-18062018-01](#tarea-18062018-01) |
 
 ## Impediementos
 | Pendiente | En curso | Hecho  |
