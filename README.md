@@ -126,8 +126,7 @@
   | course Component | [cur-01](#cur-01) |    |    | No iniciacia |
   | theme Component | [cur-04](#cur-04), [cur-02](#cur-05), [cur-06](#cur-06) |    |    | No iniciacia |
   | post Component | [cur-06](#cur-06), [cur-07](#cur-07), [cur-08](#cur-08)  | [tarea-18062018-01](#tarea-18062018-01) |  @jesusdpp96  | **Completada** |
-  | post Component | [cur-06](#cur-06), [cur-07](#cur-07), [cur-08](#cur-08)  | [tarea-21062018-01](#tarea-21062018-01) |   | No iniciada |
-  
+
 ### Descripcion Tareas
 
 #### Tarea-16062018-01
