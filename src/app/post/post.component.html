@@ -1,0 +1,38 @@
+<mat-card class="p-card" *ngIf="post">
+  <mat-card-header>
+    <!-- <div mat-card-avatar class="example-header-image" style='background-color:aquamarine; ' fxLayoutAlign="center center"> -->
+    <div  mat-card-avatar class="example-header-image" [style.background-color]='post.color' fxLayoutAlign="center center">
+      <span [innerHTML]="post.user[0].toUpperCase()" style="color:white;"></span>
+    </div>
+    <mat-card-title [innerHTML]='post.user'></mat-card-title>
+    <mat-card-subtitle [innerHTML]="post.date"></mat-card-subtitle>
+  </mat-card-header>
+  <img *ngIf='post.media' mat-card-image [src]="post.media[0].downloadURL" alt="Photo">
+  <mat-card-content>
+    <p *ngIf='post.description' [innerHTML]='post.description'>Description</p>
+    <!-- <div class="p-inline" *ngFor='let item of post.media'>
+      <img *ngIf='post.media && post.media.length === 2' mat-card-lg-image [src]="item.downloadURL" alt="Photo">
+      <img *ngIf='post.media && post.media.length === 3' mat-card-md-image [src]="item.downloadURL" alt="Photo">
+    </div> -->
+
+    <mat-list *ngIf='post.attachtment'>
+      <mat-list-item *ngFor='let file of post.attachtment'>
+        <img mat-list-avatar [src]='file.iconPath' alt="file">
+        <h3 mat-line [innerHTML]='file.name'>file</h3>
+        <p mat-line>
+          <span [innerHTML]='file.type'></span>
+        </p>
+        <a mat-icon-button [href]="file.downloadURL" target="_blank">
+          <mat-icon aria-label="delete">get_app</mat-icon>
+        </a>
+      </mat-list-item>
+    </mat-list>
+
+  </mat-card-content>
+  <mat-card-actions fxLayoutAlign="end end">
+    <button mat-button>COMENTAR</button>
+    <!-- <button mat-button>SHARE</button> -->
+  </mat-card-actions>
+</mat-card>
+
+

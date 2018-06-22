@@ -21,7 +21,8 @@ export class PostService {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(
       `posts/${post.id}`
     );
-    return userRef.set(post, { merge: true });
+    console.log('Post Interface', post);
+    return userRef.set(Object.assign({}, post), { merge: true });
   }
 
   deletePost(post: PostInterface) {
@@ -31,5 +32,19 @@ export class PostService {
 
   updataPost(post: PostInterface) {
     this.addNewPost(post);
+  }
+
+  getPost(idPost: string) {
+    this.postDoc = this.afs.doc<PostInterface>(`posts/${idPost}`);
+    this.post = this.postDoc.snapshotChanges().pipe(map(action => {
+      if (action.payload.exists === false) {
+        return null;
+      } else {
+        const data = action.payload.data() as PostInterface;
+        data.id = action.payload.id;
+        return data;
+      }
+    }));
+    return this.post;
   }
 }

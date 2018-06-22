@@ -34,6 +34,8 @@ import { CourseDialogComponent } from './course-dialog/course-dialog.component';
 import { NewPostDialogComponent } from './new-post-dialog/new-post-dialog.component';
 
 import { ImageCompressService, ResizeOptions, ImageUtilityService } from 'ng2-image-compress';
+import { ColorService } from './services/color.service';
+import { PostComponent } from './post/post.component';
 
 // import { CdkTableModule } from "@angular/cdk/table";
 
@@ -50,7 +52,8 @@ import { ImageCompressService, ResizeOptions, ImageUtilityService } from 'ng2-im
     ThemeDialogComponent,
     NavigationBarComponent,
     CourseDialogComponent,
-    NewPostDialogComponent
+    NewPostDialogComponent,
+    PostComponent
   ],
   imports: [
     // CdkTableModule,
@@ -72,6 +75,7 @@ import { ImageCompressService, ResizeOptions, ImageUtilityService } from 'ng2-im
     { provide: FirebaseOptionsToken, useValue: environment.firebase },
     ImageCompressService,
     ResizeOptions,
+    ColorService
   ],
   entryComponents: [
     AppComponent,

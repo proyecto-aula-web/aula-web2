@@ -70,7 +70,8 @@
           <mat-list *ngIf='ListTaskAttachment.length > 0'>
             <h3 mat-subheader>Archivos</h3>
             <mat-list-item *ngFor="let task of ListTaskAttachment">
-              <mat-icon  mat-list-icon>attachment</mat-icon>
+              <mat-icon *ngIf="!task.iconPath"  mat-list-icon>attachment</mat-icon>
+              <img *ngIf="task.iconPath" matListAvatar  [src]="task.iconPath" alt="file">
               <!-- <img *ngIf="task.response" matListAvatar class="npd-avatar" [src]="task.response.downloadURL" alt="task.name"> -->
               <h4 mat-line *ngIf="task.snapshot | async as snap">{{task.name}} -
                 <span class="npd-percent60">{{snap.bytesTransferred}} byets de {{snap.totalBytes}}</span>
