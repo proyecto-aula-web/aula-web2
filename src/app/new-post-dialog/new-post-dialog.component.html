@@ -1,0 +1,133 @@
+<div mat-dialog-title>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <div fxLayoutAlign="center center" fxFlex="1 1 88%">
+
+      <div fxLayoutAlign="center center" width="100%">
+        <div>
+          <mat-icon>create</mat-icon>
+        </div>
+        <div>
+          <h2 mat-dialog-title class="dialog-title">Crear Publicacion</h2>
+        </div>
+      </div>
+    </div>
+    <div fxFlex="1 1 12%" fxLayout="column" fxLayoutAlign="center center">
+      <button mat-icon-button (click)="close()">
+        <mat-icon>clear</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<!-- <h1 mat-dialog-title>This a Title</h1> -->
+
+<div mat-dialog-content>
+
+
+  <div class="container">
+    <mat-tab-group>
+      <mat-tab class="npd-padding" label="Basica">
+        <div class="npd-padding">
+          <form class="example-form" [formGroup]='simpleForm' (ngSubmit)="sumitForm()">
+            <mat-form-field class="example-full-width">
+              <textarea matInput placeholder="Escribe aqui..." formControlName="description"></textarea>
+            </mat-form-field>
+
+            <div fxLayoutAlign="end end">
+              <label class="npd-label-button" for="inputImage" matTooltip="Agregar Imagen">
+                <mat-icon aria-label="add photo" class='primary'>camera_alt</mat-icon>
+              </label>
+              <label class="npd-label-button" for="inputAttachment" matTooltip="Agregar Archivo">
+                <mat-icon aria-label="add photo" class='primary'>attachment</mat-icon>
+              </label>
+              <div *ngIf='imageLoading'>
+                <mat-progress-spinner class="example-margin" [color]="color" [mode]="mode" [diameter]="diameter"></mat-progress-spinner>
+              </div>
+            </div>
+            <div>
+              <div class="npd-hidden">
+                <input id="inputImage" type="file" accept="image/*" (change)="onChange($event)" multiple/>
+              </div>
+              <div class="npd-hidden">
+                <input id="inputAttachment" type="file" [accept]="attachmentConfig" (change)="onChangeAttachment($event)" multiple/>
+              </div>
+            </div>
+          </form>
+          <mat-list *ngIf='ListTask.length > 0'>
+            <h3 mat-subheader>Imagenes</h3>
+            <mat-list-item *ngFor="let task of ListTask">
+              <mat-icon *ngIf="!task.response" mat-list-icon>image</mat-icon>
+              <img *ngIf="task.response" matListAvatar class="npd-avatar" [src]="task.response.downloadURL" alt="task.name">
+              <h4 mat-line *ngIf="task.snapshot | async as snap" >{{task.name}} - <span class="npd-percent60">{{snap.bytesTransferred}} byets de {{snap.totalBytes}}</span> </h4>
+              <mat-progress-bar matLine *ngIf="task.snapshot | async as snap" [color]="task.progressBar.color" [mode]="task.progressBar.mode" [value]="(snap.bytesTransferred === 0)? snap.bytesTransferred : (snap.bytesTransferred*100)/snap.totalBytes" [bufferValue]="(snap.bytesTransferred === 0)? snap.bytesTransferred +10 : (snap.bytesTransferred*100)/snap.totalBytes"></mat-progress-bar>
+              <button mat-icon-button (click)="deleteCancel(task)">
+                <mat-icon aria-label="delete">clear</mat-icon>
+              </button>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+          </mat-list>
+          <mat-list *ngIf='ListTaskAttachment.length > 0'>
+            <h3 mat-subheader>Archivos</h3>
+            <mat-list-item *ngFor="let task of ListTaskAttachment">
+              <mat-icon *ngIf="!task.iconPath"  mat-list-icon>attachment</mat-icon>
+              <img *ngIf="task.iconPath" matListAvatar  [src]="task.iconPath" alt="file">
+              <!-- <img *ngIf="task.response" matListAvatar class="npd-avatar" [src]="task.response.downloadURL" alt="task.name"> -->
+              <h4 mat-line *ngIf="task.snapshot | async as snap">{{task.name}} -
+                <span class="npd-percent60">{{snap.bytesTransferred}} byets de {{snap.totalBytes}}</span>
+              </h4>
+              <mat-progress-bar matLine *ngIf="task.snapshot | async as snap" [color]="task.progressBar.color" [mode]="task.progressBar.mode"
+                [value]="(snap.bytesTransferred === 0)? snap.bytesTransferred : (snap.bytesTransferred*100)/snap.totalBytes" [bufferValue]="(snap.bytesTransferred === 0)? snap.bytesTransferred +10 : (snap.bytesTransferred*100)/snap.totalBytes"></mat-progress-bar>
+              <button mat-icon-button>
+                <mat-icon aria-label="delete">clear</mat-icon>
+              </button>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+          </mat-list>
+        </div>
+      </mat-tab>
+      <mat-tab label="Avanzada" disabled>
+        <div class="npd-padding">
+          <form class="example-form" [formGroup]='advancedForm'>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Titulo"pct="Sushi">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+              <textarea matInput placeholder="Escribe una introduccion..."></textarea>
+            </mat-form-field>
+            <div fxLayoutAlign="end end">
+              <button mat-button matTooltip="Agregar Imagen">
+                <mat-icon aria-label="add photo" class='primary'>camera_alt</mat-icon>
+              </button>
+              <button mat-button matTooltip="Agregar Archivo">
+                <mat-icon aria-label="add file" class='primary'>attach_file</mat-icon>
+              </button>
+            </div>
+            <mat-divider></mat-divider>
+            <mat-form-field class="example-full-width">
+              <textarea matInput placeholder="Escribe una descripcion..."></textarea>
+            </mat-form-field>
+
+            <div fxLayoutAlign="end end">
+              <button mat-button matTooltip="Agregar Imagen">
+                <mat-icon aria-label="add photo" color='primary'>camera_alt</mat-icon>
+              </button>
+              <button mat-button matTooltip="Agregar Archivo">
+                <mat-icon aria-label="add file" color='primary'>attach_file</mat-icon>
+              </button>
+            </div>
+          </form>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+
+  </div>
+
+</div>
+
+<div mat-dialog-actions fxLayoutAlign="end end">
+    <mat-progress-spinner *ngIf='imageLoading' class="example-margin" [color]="color" [mode]="mode" [diameter]="diameter"></mat-progress-spinner>
+    <button mat-button color="primary" (click)='sumitForm()'>Publicar</button>
+</div>
+

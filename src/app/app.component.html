@@ -1,6 +1,6 @@
 <div class="example-container" [class.example-is-mobile]="mobileQuery.matches" *ngIf="shouldRun">
-  
-  
+
+
   <mat-toolbar color="primary">
 
   	<mat-toolbar-row>
@@ -8,7 +8,7 @@
   	<div *ngIf="isLogin" [ngStyle]="{'display' : (screenWidth > 840) ? 'none' : 'block'}">
     <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
     </div>
-  
+
 
     <span><h1 class="example-app-name">{{title}}</h1></span>
 
@@ -20,11 +20,11 @@
 
 
     <div class="menu-navbar" fxLayout="row" fxLayoutAlign="center center">
-          
+
                 <button mat-button *ngIf="!isLogin" routerLink="/signin">
-                  <mat-icon>account_circle</mat-icon> Login  
+                  <mat-icon>account_circle</mat-icon> Login
                 </button>
-          
+
                 <button mat-button *ngIf="!isLogin" routerLink="/signup">
                     <mat-icon>input</mat-icon> Registrarse
                 </button>
@@ -49,24 +49,23 @@
 
 
   <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
-    
+
     <mat-sidenav #snav class="menu-sidenav" *ngIf="isLogin"  [opened]="screenWidth > 840" [mode]="(screenWidth > 840) ? 'side' : 'over'">
       <mat-nav-list>
         <mat-card mat-list-item *ngFor="let nav of fillerNav">{{nav}}</mat-card>
       </mat-nav-list>
     </mat-sidenav>
-  
+
     <!-- <mat-sidenav-content>
         <p *ngFor="let content of fillerContent">{{content}}</p>
       </mat-sidenav-content> -->
     <mat-sidenav-content>
-    	
-      <flash-messages></flash-messages>
+
       <router-outlet>
       </router-outlet>
     </mat-sidenav-content>
-  
-  
+
+
   </mat-sidenav-container>
 
 </div>

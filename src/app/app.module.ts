@@ -1,26 +1,27 @@
-import {BrowserModule} from "@angular/platform-browser";
-import {platformBrowserDynamic} from "@angular/platform-browser-dynamic";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import { NgModule } from "@angular/core";
+import {BrowserModule} from '@angular/platform-browser';
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from "./app-routing.module";
+import { AppRoutingModule } from './app-routing.module';
 
-import { AppComponent } from "./app.component";
+import { AppComponent } from './app.component';
 
-import { ReactiveFormsModule } from "@angular/forms";
+import { ReactiveFormsModule } from '@angular/forms';
 
-import { AuthGuard } from "./core/auth.guard";
-import { AuthService } from "./core/auth.service";
+import { AuthGuard } from './core/auth.guard';
+import { AuthService } from './core/auth.service';
 
-import { DemoMaterialModule } from "./demo-material/demo-material.module";
+import { DemoMaterialModule } from './demo-material/demo-material.module';
 
 
-import { AngularFireModule, FirebaseOptionsToken } from "angularfire2";
-import { environment } from "../environments/environment";
-import {CoreModule} from "./core/core.module";
-import { UserProfileComponent } from "./user-profile/user-profile.component";
-import { SigninComponent } from "./signin/signin.component";
-import { SignupComponent } from "./signup/signup.component";
+import { AngularFireModule, FirebaseOptionsToken } from 'angularfire2';
+import { AngularFireStorageModule } from 'angularfire2/storage';
+import { environment } from '../environments/environment';
+import { CoreModule } from './core/core.module';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { SigninComponent } from './signin/signin.component';
+import { SignupComponent } from './signup/signup.component';
 import { NewCourseComponent } from './new-course/new-course.component';
 import { DeleteThemeDialogComponent } from './delete-theme-dialog/delete-theme-dialog.component';
 import { NewThemeComponent } from './new-theme/new-theme.component';
@@ -37,8 +38,14 @@ import { FormsModule } from '@angular/forms';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { CourseDialogComponent } from './course-dialog/course-dialog.component';
+import { NewPostDialogComponent } from './new-post-dialog/new-post-dialog.component';
 
-import { FlashMessagesModule, FlashMessagesService } from 'angular2-flash-messages';
+import { ImageCompressService, ResizeOptions, ImageUtilityService } from 'ng2-image-compress';
+import { ColorService } from './services/color.service';
+import { PostComponent } from './post/post.component';
+import { HomeComponent } from './home/home.component';
+import { ListPostsComponent } from './list-posts/list-posts.component';
+
 
 // import { CdkTableModule } from "@angular/cdk/table";
 
@@ -55,7 +62,10 @@ import { FlashMessagesModule, FlashMessagesService } from 'angular2-flash-messag
     ThemeDialogComponent,
     NavigationBarComponent,
     CourseDialogComponent,
-
+    NewPostDialogComponent,
+    PostComponent,
+    HomeComponent,
+    ListPostsComponent
   ],
   imports: [
     // CdkTableModule,
@@ -63,16 +73,35 @@ import { FlashMessagesModule, FlashMessagesService } from 'angular2-flash-messag
     ReactiveFormsModule,
     AppRoutingModule,
     AngularFireModule,
+    AngularFireStorageModule,
     CoreModule,
     BrowserAnimationsModule,
     DemoMaterialModule,
     FormsModule,
     FlexLayoutModule,
-    FlashMessagesModule,
+    FlexLayoutModule
   ],
-  providers: [AuthService, AuthGuard, ThemeService, FlashMessagesService, CourseService, GroupService, InstitutionService, 
-  EvaluationService, UserService, { provide: FirebaseOptionsToken, useValue: environment.firebase }],
-  entryComponents: [AppComponent, ThemeDialogComponent, DeleteThemeDialogComponent, CourseDialogComponent],
+  providers: [
+    AuthService,
+    AuthGuard,
+    ThemeService,
+    CourseService,
+    GroupService,
+    InstitutionService,
+    EvaluationService,
+    UserService,
+    { provide: FirebaseOptionsToken, useValue: environment.firebase },
+    ImageCompressService,
+    ResizeOptions,
+    ColorService
+  ],
+  entryComponents: [
+    AppComponent,
+    ThemeDialogComponent,
+    DeleteThemeDialogComponent,
+    CourseDialogComponent,
+    NewPostDialogComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

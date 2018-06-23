@@ -22,7 +22,6 @@ import { AuthService } from '../core/auth.service';
 
 
 import { Router } from '@angular/router';
-import { FlashMessagesService } from 'angular2-flash-messages';
 
 
 @Component({
@@ -74,7 +73,6 @@ export class CourseDialogComponent implements OnInit {
 
   // firstFormGroup: FormGroup;
   // secondFormGroup: FormGroup;
-
   stepOneForm: FormGroup;
   stepTwoForm: FormGroup;
   stepThreeForm: FormGroup;
@@ -88,7 +86,7 @@ export class CourseDialogComponent implements OnInit {
     next: 'Siguiente',
     required: 'Requerido',
     min: 'Caracteres minimos',
-    curso : 'Curso',
+    curso: 'Curso',
   };
 
   public theme: ThemeInterface = {
@@ -112,7 +110,6 @@ export class CourseDialogComponent implements OnInit {
     private evaluationService: EvaluationService,
     public authService: AuthService,
     public router: Router,
-    public flashMessages: FlashMessagesService,
     @Inject(MAT_DIALOG_DATA) public data) { }
 
   ngOnInit() {
@@ -123,7 +120,6 @@ export class CourseDialogComponent implements OnInit {
     // this.secondFormGroup = this._formBuilder.group({
     //   secondCtrl: ['', Validators.required]
     // });
-
     this.authService.getAuth().subscribe(auth => {
       if (auth) {
         this.email_father = auth.email;
@@ -140,19 +136,19 @@ export class CourseDialogComponent implements OnInit {
     });
 
     this.stepTwoForm = this._formBuilder.group({
-      name: ['', [Validators.minLength(4), Validators.maxLength(45),Validators.pattern(/^[0-9a-zA-Z\s]+$/)]]
+      name: ['', [Validators.minLength(4), Validators.maxLength(45), Validators.pattern(/^[0-9a-zA-Z\s]+$/)]]
     });
 
     this.stepThreeForm = this._formBuilder.group({
-      email: ['',[Validators.minLength(4), Validators.maxLength(45),Validators.pattern(/^[0-9a-zA-Z\s]+$/)]],
-      students: ['',[Validators.minLength(4), Validators.maxLength(200)]],
-      group: ['',[Validators.minLength(4), Validators.maxLength(20),Validators.pattern(/^[0-9a-zA-Z\s]+$/)]]
+      email: ['', [Validators.minLength(4), Validators.maxLength(45), Validators.pattern(/^[0-9a-zA-Z\s]+$/)]],
+      students: ['', [Validators.minLength(4), Validators.maxLength(200)]],
+      group: ['', [Validators.minLength(4), Validators.maxLength(20), Validators.pattern(/^[0-9a-zA-Z\s]+$/)]]
     });
 
     this.stepFourForm = this._formBuilder.group({
-      evaluation: ['',[Validators.minLength(4), Validators.maxLength(45),Validators.pattern(/^[0-9a-zA-Z\s]+$/)]],
+      evaluation: ['', [Validators.minLength(4), Validators.maxLength(45), Validators.pattern(/^[0-9a-zA-Z\s]+$/)]],
       group: '',
-      date: ['',[]],
+      date: ['', []],
       percent: '',
     });
 
@@ -191,7 +187,7 @@ export class CourseDialogComponent implements OnInit {
 
   onClickNextOne() {
 
-    var fecha = new Date();
+    let fecha = new Date();
     this.course.id = md5(this.stepOneForm.get('name').value + fecha);
     this.course.name = this.stepOneForm.get('name').value;
     this.course.code = this.stepOneForm.get('code').value;
@@ -210,8 +206,8 @@ export class CourseDialogComponent implements OnInit {
 
   addTheme() {
 
-    var fecha = new Date();
-    var auxTheme: ThemeInterface = {
+    let fecha = new Date();
+    let auxTheme: ThemeInterface = {
       id: '',
       id_course: '',
       name: '',
@@ -241,9 +237,9 @@ export class CourseDialogComponent implements OnInit {
   }
 
   addInstructor() {
-    var fecha = new Date();
+    let fecha = new Date();
 
-    var auxInstructor: UserInterface = {
+    let auxInstructor: UserInterface = {
       uid: '',
       email: '',
       username: '',
@@ -276,9 +272,9 @@ export class CourseDialogComponent implements OnInit {
 
   addGroup() {
 
-    var fecha = new Date();
+    let fecha = new Date();
 
-    var group: GroupInterface = {
+    let group: GroupInterface = {
       id: '',
       id_course: '',
       name: '',
@@ -289,27 +285,27 @@ export class CourseDialogComponent implements OnInit {
       evaluations: [],
     }
 
-    var auxStudents: string[] = [];
-    var encontre : boolean = false;
-    var index: number = 0;
+    let auxStudents: string[] = [];
+    let encontre: boolean = false;
+    let index: number = 0;
 
     if (this.stepThreeForm.get('students').value !== null)
       auxStudents = this.stepThreeForm.get('students').value.split(/\n/g);
 
 
-    
-    if(this.groups.length != 0){
 
-      for(let i=0; i < this.groups.length; i++){
-        
-        if(this.groups[i].name == this.stepThreeForm.get('group').value){
+    if (this.groups.length != 0) {
+
+      for (let i = 0; i < this.groups.length; i++) {
+
+        if (this.groups[i].name == this.stepThreeForm.get('group').value) {
           encontre = true;
-          index=i;
+          index = i;
           break;
         }
       }
 
-      if(encontre) {
+      if (encontre) {
         this.groups[index].stundents = auxStudents;
       } else {
         group.name = this.stepThreeForm.get('group').value
@@ -319,19 +315,19 @@ export class CourseDialogComponent implements OnInit {
         this.groups.push(group);
       }
     } else {
-       group.name = this.stepThreeForm.get('group').value
-       group.stundents = auxStudents;
-       group.id_course = this.course.id;
-       group.id = md5(group.id_course + group.name + fecha);
-       this.groups.push(group);
+      group.name = this.stepThreeForm.get('group').value
+      group.stundents = auxStudents;
+      group.id_course = this.course.id;
+      group.id = md5(group.id_course + group.name + fecha);
+      this.groups.push(group);
     }
-      
+
     this.stepThreeForm.setValue({
       email: '',
       students: '',
       group: '',
     });
-    
+
     console.log(this.groups);
   }
 
@@ -340,11 +336,11 @@ export class CourseDialogComponent implements OnInit {
     console.log(this.groups);
   }
 
-  verifyGroups(){
-    if(this.groups.length == 0){
+  verifyGroups() {
+    if (this.groups.length == 0) {
 
-      var fecha = new Date();
-      var group: GroupInterface = {
+      let fecha = new Date();
+      let group: GroupInterface = {
         id: '',
         id_course: '',
         name: '',
@@ -369,10 +365,10 @@ export class CourseDialogComponent implements OnInit {
   addEvaluation() {
     console.log(this.selectThemes);
 
-    var fecha = new Date();
+    let fecha = new Date();
 
 
-    var evaluation: EvaluationInterface = {
+    let evaluation: EvaluationInterface = {
       id: '',
       themes: [],
       name: '',
@@ -382,9 +378,9 @@ export class CourseDialogComponent implements OnInit {
       percent: 0,
     }
 
-    var themes: string[] = [];
-    let name_group: string = '';
-    let index : number = 0;
+    const themes: string[] = [];
+    let name_group = '';
+    let index = 0;
 
     for (let i = 0; i < this.selectThemes.length; i++) {
 
@@ -400,9 +396,8 @@ export class CourseDialogComponent implements OnInit {
       name_group = "General";
     }
 
-    for(let i = 0; i < this.groups.length; i++)
-    {
-      if(this.groups[i].name == name_group) {
+    for (let i = 0; i < this.groups.length; i++) {
+      if (this.groups[i].name == name_group) {
         index = i;
         break;
       }
@@ -426,25 +421,24 @@ export class CourseDialogComponent implements OnInit {
     });
   }
 
-  deleteEvaluation(evaluationId: string){
+  deleteEvaluation(evaluationId: string) {
     this.evaluations = this.evaluations.filter(evaluation => evaluation.id !== evaluationId);
   }
 
   addHorario() {
 
     let name_group: string;
-    let index : number = 0;
-    var days: DayInterface[]=[];
+    let index = 0;
+    let days: DayInterface[] = [];
 
-    if(this.stepFiveForm.get('group').value == "") {
+    if (this.stepFiveForm.get('group').value == "") {
       name_group = "General";
     } else {
       name_group = this.stepFiveForm.get('group').value;
     }
 
-    for(let i = 0; i < this.groups.length; i++)
-    {
-      if(this.groups[i].name == name_group) {
+    for (let i = 0; i < this.groups.length; i++) {
+      if (this.groups[i].name == name_group) {
         index = i;
         break;
       }
@@ -454,194 +448,194 @@ export class CourseDialogComponent implements OnInit {
     this.groups[index].date_cul = this.stepFiveForm.get('date_cul').value;
 
 
-    if(this.lunes){
+    if (this.lunes) {
 
-        var day_lun : DayInterface = {
-          day: 'lunes',
-          duration: null,
-        }
+      const day_lun: DayInterface = {
+        day: 'lunes',
+        duration: null,
+      };
 
-        var duration_lun = {
-          InitHour: '',
-          FinishHour: ''
-        };
+      const duration_lun = {
+        InitHour: '',
+        FinishHour: ''
+      };
 
-        duration_lun.InitHour = this.stepFiveForm.get('lun_hour_ini').value;
-        duration_lun.FinishHour = this.stepFiveForm.get('lun_hour_cul').value;
-        day_lun.duration = duration_lun;
-        days.push(day_lun);
+      duration_lun.InitHour = this.stepFiveForm.get('lun_hour_ini').value;
+      duration_lun.FinishHour = this.stepFiveForm.get('lun_hour_cul').value;
+      day_lun.duration = duration_lun;
+      days.push(day_lun);
     }
 
-    if(this.martes){
+    if (this.martes) {
 
-        var day_mar : DayInterface = {
-          day: 'martes',
-          duration: null,
-        }
+      const day_mar: DayInterface = {
+        day: 'martes',
+        duration: null,
+      };
 
-        var duration_mar = {
-          InitHour: '',
-          FinishHour: ''
-        };
+      const duration_mar = {
+        InitHour: '',
+        FinishHour: ''
+      };
 
-        duration_mar.InitHour = this.stepFiveForm.get('mar_hour_ini').value;
-        duration_mar.FinishHour = this.stepFiveForm.get('mar_hour_cul').value;
-        day_mar.duration = duration_mar;
-        days.push(day_mar);
+      duration_mar.InitHour = this.stepFiveForm.get('mar_hour_ini').value;
+      duration_mar.FinishHour = this.stepFiveForm.get('mar_hour_cul').value;
+      day_mar.duration = duration_mar;
+      days.push(day_mar);
     }
 
-    if(this.miercoles){
+    if (this.miercoles) {
 
-        var day_mie : DayInterface = {
-          day: 'miercoles',
-          duration: null,
-        }
+      const day_mie: DayInterface = {
+        day: 'miercoles',
+        duration: null,
+      };
 
-        var duration_mie = {
-          InitHour: '',
-          FinishHour: ''
-        };
+      const duration_mie = {
+        InitHour: '',
+        FinishHour: ''
+      };
 
-        duration_mie.InitHour = this.stepFiveForm.get('mie_hour_ini').value;
-        duration_mie.FinishHour = this.stepFiveForm.get('mie_hour_cul').value;
-        day_mie.duration = duration_mie;
-        days.push(day_mie);
+      duration_mie.InitHour = this.stepFiveForm.get('mie_hour_ini').value;
+      duration_mie.FinishHour = this.stepFiveForm.get('mie_hour_cul').value;
+      day_mie.duration = duration_mie;
+      days.push(day_mie);
     }
 
-    if(this.jueves){
+    if (this.jueves) {
 
-        var day_jue : DayInterface = {
-          day: 'jueves',
-          duration: null,
-        }
+      const day_jue: DayInterface = {
+        day: 'jueves',
+        duration: null,
+      };
 
-        var duration_jue = {
-          InitHour: '',
-          FinishHour: ''
-        };
+      const duration_jue = {
+        InitHour: '',
+        FinishHour: ''
+      };
 
-        duration_jue.InitHour = this.stepFiveForm.get('jue_hour_ini').value;
-        duration_jue.FinishHour = this.stepFiveForm.get('jue_hour_cul').value;
-        day_jue.duration = duration_jue;
-        days.push(day_jue);
+      duration_jue.InitHour = this.stepFiveForm.get('jue_hour_ini').value;
+      duration_jue.FinishHour = this.stepFiveForm.get('jue_hour_cul').value;
+      day_jue.duration = duration_jue;
+      days.push(day_jue);
     }
 
-    if(this.viernes){
+    if (this.viernes) {
 
-        var day_vie : DayInterface = {
-          day: 'viernes',
-          duration: null,
-        }
+      const day_vie: DayInterface = {
+        day: 'viernes',
+        duration: null,
+      };
 
-        var duration_vie = {
-          InitHour: '',
-          FinishHour: ''
-        };
+      const duration_vie = {
+        InitHour: '',
+        FinishHour: ''
+      };
 
-        duration_vie.InitHour = this.stepFiveForm.get('vie_hour_ini').value;
-        duration_vie.FinishHour = this.stepFiveForm.get('vie_hour_cul').value;
-        day_vie.duration = duration_vie;
-        days.push(day_vie);
+      duration_vie.InitHour = this.stepFiveForm.get('vie_hour_ini').value;
+      duration_vie.FinishHour = this.stepFiveForm.get('vie_hour_cul').value;
+      day_vie.duration = duration_vie;
+      days.push(day_vie);
     }
 
-    if(this.sabado){
+    if (this.sabado) {
 
-        var day_sab : DayInterface = {
-          day: 'sabado',
-          duration: null,
-        }
+      const day_sab: DayInterface = {
+        day: 'sabado',
+        duration: null,
+      };
 
-        var duration_sab = {
-          InitHour: '',
-          FinishHour: ''
-        };
+      const duration_sab = {
+        InitHour: '',
+        FinishHour: ''
+      };
 
-        duration_sab.InitHour = this.stepFiveForm.get('sab_hour_ini').value;
-        duration_sab.FinishHour = this.stepFiveForm.get('sab_hour_cul').value;
-        day_sab.duration = duration_sab;
-        days.push(day_sab);
+      duration_sab.InitHour = this.stepFiveForm.get('sab_hour_ini').value;
+      duration_sab.FinishHour = this.stepFiveForm.get('sab_hour_cul').value;
+      day_sab.duration = duration_sab;
+      days.push(day_sab);
     }
 
-    if(this.domingo){
+    if (this.domingo) {
 
-        var day_dom : DayInterface = {
-          day: 'domingo',
-          duration: null,
-        }
+      const day_dom: DayInterface = {
+        day: 'domingo',
+        duration: null,
+      };
 
-        var duration_dom = {
-          InitHour: '',
-          FinishHour: ''
-        };
+      const duration_dom = {
+        InitHour: '',
+        FinishHour: ''
+      };
 
-        duration_dom.InitHour = this.stepFiveForm.get('dom_hour_ini').value;
-        duration_dom.FinishHour = this.stepFiveForm.get('dom_hour_cul').value;
-        day_dom.duration = duration_dom;
-        days.push(day_dom);
+      duration_dom.InitHour = this.stepFiveForm.get('dom_hour_ini').value;
+      duration_dom.FinishHour = this.stepFiveForm.get('dom_hour_cul').value;
+      day_dom.duration = duration_dom;
+      days.push(day_dom);
     }
 
 
     console.log(days);
     this.groups[index].schedule = days;
 
-    var horario: HorarioInterface = {
+    const horario: HorarioInterface = {
       id_group: '',
       name_group: '',
       days: []
-    }
+    };
 
     horario.id_group = this.groups[index].id;
     horario.name_group = this.groups[index].name;
     horario.days = days;
 
-    if(this.horarios.length == 0) {
+    if (this.horarios.length === 0) {
       this.horarios.push(horario);
     } else {
 
-      var encontre: boolean = false;
-      var pos: number = 0;
+      let encontre = false;
+      let pos = 0;
 
       for (let i = 0; i < this.horarios.length; i++) {
-        if(this.horarios[i].id_group == this.groups[index].id) {
+        if (this.horarios[i].id_group === this.groups[index].id) {
           encontre = true;
           pos = i;
           break;
         }
       }
 
-      if(encontre){
+      if (encontre) {
         this.horarios[pos].days = days;
-        console.log("Encontre el beta");
+        console.log('Encontre el beta');
       } else {
         this.horarios.push(horario);
-        console.log("NO Encontre el beta");
+        console.log('NO Encontre el beta');
       }
     }
 
 
 
-    console.log("Hora del lunes:" + this.stepFiveForm.get('lun_hour_ini').value);
+    console.log('Hora del lunes:' + this.stepFiveForm.get('lun_hour_ini').value);
     console.log(this.groups);
-    console.log("Horarios");
+    console.log('Horarios');
     console.log(this.horarios);
 
 
   }
 
-  deleteHorario(id: string){
-    let index: number = 0;
-    for(let i=0; i < this.groups.length; i++){
-      if(this.groups[i].id == id){
-        this.groups[i].schedule.splice(0,this.groups[i].schedule.length);
+  deleteHorario(id: string) {
+    const index = 0;
+    for (let i = 0; i < this.groups.length; i++) {
+      if (this.groups[i].id === id) {
+        this.groups[i].schedule.splice(0, this.groups[i].schedule.length);
         break;
       }
 
     }
 
 
-    for(let i=0; i < this.horarios.length; i++){
-      if(this.horarios[i].id_group == id){
-        this.horarios.splice(i,1);
+    for (let i = 0; i < this.horarios.length; i++) {
+      if (this.horarios[i].id_group === id) {
+        this.horarios.splice(i, 1);
         break;
       }
     }
@@ -651,50 +645,50 @@ export class CourseDialogComponent implements OnInit {
     console.log(this.horarios);
   }
 
-  onDone(){
+  onDone() {
 
-     if(this.themes.length != 0) {
-       for(let i=0; i< this.themes.length; i++){
-         this.course.themes.push(this.themes[i].id);
-         this.themeService.addNewTheme(this.themes[i]);
-       }
-     }
-     
-     if(this.instructors.length != 0) {
-       for(let i=0; i< this.instructors.length; i++){
-         this.course.instructors.push(this.instructors[i].email);
-       }
-     }
+    if (this.themes.length !== 0) {
+      for (let i = 0; i < this.themes.length; i++) {
+        this.course.themes.push(this.themes[i].id);
+        this.themeService.addNewTheme(this.themes[i]);
+      }
+    }
 
-     if(this.groups.length != 0) {
+    if (this.instructors.length !== 0) {
+      for (let i = 0; i < this.instructors.length; i++) {
+        this.course.instructors.push(this.instructors[i].email);
+      }
+    }
 
-       
-       if(this.evaluations.length != 0) {
-
-         for(let i=0; i< this.groups.length; i++){
-           for (let j=0; j < this.evaluations.length; j++){
-             if(this.groups[i].id == this.evaluations[j].groupId) {
-                this.groups[i].evaluations.push(this.evaluations[j]);
-                this.evaluationService.addNewEvaluation(this.evaluations[j]);
-
-             }
-           }
-         }
-         
-       }
-       for(let i=0; i< this.groups.length; i++){
-         this.course.groups.push(this.groups[i].id);
-         this.groupService.addNewGroup(this.groups[i]);
-       }
-     }
-      var fecha = new Date();
-
-      this.course.lastUpdate = fecha;
-      this.courseService.addNewCourse(this.course);
-      this.instituionsService.addNewInstitution(this.institution);
+    if (this.groups.length !== 0) {
 
 
+      if (this.evaluations.length !== 0) {
 
-      this.dialogRef.close();
+        for (let i = 0; i < this.groups.length; i++) {
+          for (let j = 0; j < this.evaluations.length; j++) {
+            if (this.groups[i].id === this.evaluations[j].groupId) {
+              this.groups[i].evaluations.push(this.evaluations[j]);
+              this.evaluationService.addNewEvaluation(this.evaluations[j]);
+
+            }
+          }
+        }
+
+      }
+      for (let i = 0; i < this.groups.length; i++) {
+        this.course.groups.push(this.groups[i].id);
+        this.groupService.addNewGroup(this.groups[i]);
+      }
+    }
+    const fecha = new Date();
+
+    this.course.lastUpdate = fecha;
+    this.courseService.addNewCourse(this.course);
+    this.instituionsService.addNewInstitution(this.institution);
+
+
+
+    this.dialogRef.close();
   }
 }

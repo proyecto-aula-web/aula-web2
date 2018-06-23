@@ -61,10 +61,8 @@ export class CourseService {
 
   // private updateUserData(provider: string, user: any, additionalUserInfo: any) {
   //   // Sets user data to firestore on login
-
   //   let data: User | null;
   //   const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
-
   //   data = {
   //     uid: user.uid,
   //     email: user.email,
@@ -74,7 +72,6 @@ export class CourseService {
   //     photoURL: user.photoURL,
   //     provider: provider /** eliminar */
   //   };
-
   //   return userRef.set(data, { merge: true });
   // }
 }

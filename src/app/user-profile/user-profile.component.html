@@ -1,14 +1,27 @@
 <div class="course-buttons" fxLayout="row" fxLayoutGap="30px" fxLayoutAlign="center start">
   <div>
-  <button mat-raised-button color="primary">Unirse a un curso</button>
-</div>
+    <button mat-raised-button color="primary">Unirse a un curso</button>
+  </div>
   <div>
-  <button mat-raised-button color="accent">Crear un curso</button>
-</div>
+    <button mat-raised-button color="accent">Crear un curso</button>
+  </div>
+  <div>
+    <button mat-raised-button color="primary" (click)='openNewPostDialog()'>Hacer Publicacion</button>
+  </div>
 </div>
 
 
 <div fxLayoutAlign="center start">
+  <!-- <div *ngFor="let post of ListPost">
+    <au-post [id]="post.id"></au-post>
+  </div> -->
+
+  <mat-list>
+    <mat-list-item style="width: 100%; height: auto;" *ngFor="let post of ListPost">
+        <au-post [id]="post.id" style="width: 100%;"></au-post>
+    </mat-list-item>
+  </mat-list>
+<!-- <au-post id="0704f066643fd35c583e309b15a44043"></au-post>
 <mat-card class="example-card">
   <mat-card-header>
     <div mat-card-avatar class="example-header-image"></div>
@@ -27,7 +40,7 @@
     <button mat-button>LIKE</button>
     <button mat-button>SHARE</button>
   </mat-card-actions>
-</mat-card>
+</mat-card> -->
 </div>
 
 <div class="floating-button" fxLayoutAlign="end end">
