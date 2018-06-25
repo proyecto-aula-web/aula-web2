@@ -120,11 +120,11 @@
 
   | Compoenent | *Rquisito*       | *Tareas* | *Quien*  | *Estado* (No Iniciada, En Proceso,Completada) |
   | ---------- | ---------------- |:--------| :------- | --------------------------------------------- |
-  | new-post Component |  [cur-08](#cur-08)  |  [Tarea-16062018-01](#Tarea-16062018-01)  |    | No iniciacia |
-  | list-course Component |  | [tarea-17062018-01](#tarea-17062018-01) |  | No iniciacia |
+  | new-post Component |  [cur-08](#cur-08)  |  [Tarea-16062018-01](#Tarea-16062018-01)  | @anth0   |En Proceso |
+  | list-course Component |  | [tarea-17062018-01](#tarea-17062018-01) | @anth0  |En Proceso |
   | list-theme Component | [cur-02](#cur-02), [cur-03](#cur-03) | [tarea-17062018-02](#tarea-17062018-02) |    | No iniciada |
-  | course Component | [cur-01](#cur-01) |    |    | No iniciacia |
-  | theme Component | [cur-04](#cur-04), [cur-02](#cur-05), [cur-06](#cur-06) |    |    | No iniciacia |
+  | course Component | [cur-01](#cur-01) |    |  @jesusdpp96  |En Proceso |
+  | theme Component | [cur-04](#cur-04), [cur-02](#cur-05), [cur-06](#cur-06) |    |  @jesusdpp96  |En Proceso |
   | post Component | [cur-06](#cur-06), [cur-07](#cur-07), [cur-08](#cur-08)  | [tarea-18062018-01](#tarea-18062018-01) |  @jesusdpp96  | **Completada** |
 
 ### Descripcion Tareas
@@ -173,7 +173,7 @@
 
 | Pendiente | En curso | Hecho  |
 |---------- | -------- | ------ |
-| [tarea-16062018-01](#tarea-16062018-01), [tarea-17062018-01](#tarea-17062018-01), [tarea-17062018-02](#tarea-17062018-02) | [tarea-21062018-02](#tarea-21062018-02) | [tarea-18062018-01](#tarea-18062018-01) |
+|  | [tarea-16062018-01](#tarea-16062018-01), [tarea-17062018-01](#tarea-17062018-01), [tarea-17062018-02](#tarea-17062018-02)   | [tarea-18062018-01](#tarea-18062018-01), [tarea-21062018-02](#tarea-21062018-02) |
 
 ## Impediementos
 | Pendiente | En curso | Hecho  |
