@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { CourseService } from '../services/course.service';
 
 @Component({
   selector: 'au-course',
@@ -7,16 +8,17 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./course.component.css']
 })
 export class CourseComponent implements OnInit {
-
   idToShow: string;
 
   constructor(
-    private route: ActivatedRoute
-  ) { }
+    private route: ActivatedRoute,
+    private _CourseService: CourseService
+  ) {}
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
     this.idToShow = id;
-  }
 
+    this._CourseService.setCurrentCourseId(id);
+  }
 }

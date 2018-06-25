@@ -8,11 +8,21 @@ import { map } from 'rxjs/operators';
 export class ThemeService {
   themeCollection: AngularFirestoreCollection<ThemeInterface>;
   themeDoc: AngularFirestoreDocument<ThemeInterface>;
-  themes: Observable<ThemeInterface[]>;
+  // themes: Observable<ThemeInterface[]>;
+  themes: any;
+  themesObservables: any;
   theme: Observable<ThemeInterface>;
 
-  constructor(private afs: AngularFirestore) {
+  currentThemeId: string;
+
+
+  constructor(
+    private afs: AngularFirestore
+  ) {
     this.themeCollection = this.afs.collection('themes', res => res);
+
+    this.themes = {};
+    this.themesObservables = {};
   }
 
   // addNewTheme(theme: ThemeInterface) {
@@ -47,11 +57,22 @@ export class ThemeService {
         } else {
           const data = action.payload.data() as ThemeInterface;
           data.id = action.payload.id;
+          this.themes[data.id] = data;
           return data;
         }
       })
     );
+    this.themesObservables[idTheme] = this.theme;
     return this.theme;
+  }
+
+  getTheme(id: string): ThemeInterface {
+    // console.log("del ThemeService :: getTheme", this.course);
+    if (this.themes[id]) {
+      return this.themes[id];
+    } else {
+      return null;
+    }
   }
 
   updateTheme(theme: ThemeInterface) {
@@ -62,5 +83,13 @@ export class ThemeService {
   deleteTheme(theme: ThemeInterface) {
     this.themeDoc = this.afs.doc(`themes/${theme.id}`);
     this.themeDoc.delete();
+  }
+
+  getCurrentThemeId(): string {
+    return this.currentThemeId;
+  }
+
+  setCurrentThemeId(id: string): void {
+    this.currentThemeId = id;
   }
 }

@@ -47,6 +47,7 @@ import { HomeComponent } from './home/home.component';
 import { ListCoursesComponent } from './list-courses/list-courses.component';
 import { ListThemesComponent } from './list-themes/list-themes.component';
 import { CourseComponent } from './course/course.component';
+import { ThemeComponent } from './theme/theme.component';
 
 
 // import { CdkTableModule } from "@angular/cdk/table";
@@ -69,7 +70,8 @@ import { CourseComponent } from './course/course.component';
     HomeComponent,
     ListCoursesComponent,
     ListThemesComponent,
-    CourseComponent
+    CourseComponent,
+    ThemeComponent
   ],
   imports: [
     // CdkTableModule,

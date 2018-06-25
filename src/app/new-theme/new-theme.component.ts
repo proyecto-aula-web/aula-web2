@@ -14,11 +14,11 @@ import { Observable } from 'rxjs/Observable';
 })
 
 export class NewThemeComponent implements OnInit {
-  
+
   name: string;
   public themes: ThemeInterface[];
-  
-  
+
+
   constructor(
   		public dialog: MatDialog,
       private themeService: ThemeService,

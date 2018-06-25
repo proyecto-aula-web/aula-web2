@@ -7,11 +7,12 @@ export interface CourseInterface {
   name: string;
   code: string;
   email_owner: string;
-  instructors?: string [];
+  instructors?: string[];
   institution: InstitutionInterface;
-  groups?: string [];
-  themes?: string [];
+  groups?: string[];
+  themes?: { id: string; name: string }[];
   lastUpdate?: Date;
+  posts?: string[];
 }
 
 export interface ItemCourseInterface {

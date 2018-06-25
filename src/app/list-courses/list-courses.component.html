@@ -1,10 +1,10 @@
 <mat-nav-list>
   <!-- <h3 matSubheader>Cursos</h3> -->
-  <mat-list-item *ngFor="let id of coursesId" (click)="goToCourse(id)">
+  <mat-list-item (click)="openDialogCourse()">
     <mat-icon mat-list-icon>create</mat-icon>
     <h4 mat-line>Nuevo Curso</h4>
   </mat-list-item>
-  <mat-list-item *ngFor="let id of coursesId" (click)="goToCourse(id)">
+  <mat-list-item (click)="null">
     <mat-icon mat-list-icon>add</mat-icon>
     <h4 mat-line>Unirse a un curso</h4>
   </mat-list-item>
@@ -15,10 +15,11 @@
   </mat-list-item> -->
   <mat-divider></mat-divider>
   <h3 matSubheader>Cursos</h3>
-  <mat-list-item *ngFor="let id of coursesId" (click)="goToCourse(id)">
-    <!-- <span *ngIf='courses[id]' [innerHTML]="courses[id].name"></span> -->
+</mat-nav-list>
+<mat-nav-list *ngFor="let id of coursesId">
+  <mat-list-item *ngIf='courses[id]' (click)="goToCourse(id)">
     <mat-icon mat-list-icon>class</mat-icon>
     <h4 mat-line [innerHTML]='courses[id].name'></h4>
-    <p  mat-line [innerHTML]='courses[id].institution.name'></p>
+    <p mat-line [innerHTML]='courses[id].institution.name'></p>
   </mat-list-item>
 </mat-nav-list>

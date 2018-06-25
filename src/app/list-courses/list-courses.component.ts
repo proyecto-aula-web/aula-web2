@@ -6,6 +6,14 @@ import { UserInterface } from '../models/user';
 import { UserService } from '../services/user.service';
 import { CourseService } from '../services/course.service';
 
+import { CourseDialogComponent } from '../course-dialog/course-dialog.component';
+import {
+  MatDialog,
+  MatDialogRef,
+  MatDialogConfig,
+  MatSnackBarVerticalPosition
+} from '@angular/material';
+
 @Component({
   selector: 'au-list-courses',
   templateUrl: './list-courses.component.html',
@@ -19,6 +27,7 @@ export class ListCoursesComponent implements OnInit {
   private UserData: UserInterface;
 
   constructor(
+    public dialog: MatDialog,
     private _UserService: UserService,
     private _CourseService: CourseService,
     private _Router: Router
@@ -52,17 +61,23 @@ export class ListCoursesComponent implements OnInit {
       element.subscribe(courseData => {
         console.log('del ListCourses', courseData);
         this.courses[courseData.id] = courseData;
-
-        console.log('del courses', this.courses);
-
-        /** eliminar */
-        this._CourseService.addNewCourse(courseData);
       });
     }
   }
 
   goToCourse(id: string) {
+    this._CourseService.setCurrentCourseId(id);
     this._Router.navigate([`/course/${id}`]);
   }
 
+  openDialogCourse() {
+    console.log('Abir el boton de dialog');
+
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    // dialogConfig.data = {id: null};
+    this.dialog.open(CourseDialogComponent, dialogConfig);
+  }
 }

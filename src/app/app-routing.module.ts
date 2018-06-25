@@ -9,6 +9,7 @@ import { NewThemeComponent } from './new-theme/new-theme.component';
 import { AuthGuard } from './core/auth.guard';
 // import { NewCourseComponent } from './new-course/new-course.component';
 import { CourseComponent } from './course/course.component';
+import { ThemeComponent } from './theme/theme.component';
 
 
 // const routes: Routes = [];
@@ -26,7 +27,16 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   // { path: 'course', component: NewCourseComponent },
-  { path: 'course/:id', component: CourseComponent },
+  {
+    path: 'course/:id',
+    component: CourseComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'course/:id/theme/:idTheme',
+    component: ThemeComponent,
+    canActivate: [AuthGuard]
+  },
   { path: 'signin', component: SigninComponent },
   { path: 'signup', component: SignupComponent },
   // { path: 'new-theme', component: NewThemeComponent },

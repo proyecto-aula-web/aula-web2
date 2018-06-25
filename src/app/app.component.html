@@ -3,14 +3,16 @@
 
   <mat-toolbar color="primary">
   	<mat-toolbar-row>
-      <span><h1 class="example-app-name">{{title}}</h1></span>
-      <div *ngIf="isLogin" [ngStyle]="{'display' : (screenWidth > 840) ? 'none' : 'block'}">
-      <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
-      </div>
-
-      <button mat-icon-button  class="home" routerLink="/user-profile" matTooltip="Home" *ngIf="isLogin">
+      <button mat-icon-button  class="home" routerLink="/home" matTooltip="Home" *ngIf="isLogin">
           <mat-icon>home</mat-icon>
       </button>
+
+      <span><h1 class="example-app-name">{{title}}</h1></span>
+
+      <div *ngIf="isLogin" [ngStyle]="{'display' : (screenWidth > 840) ? 'none' : 'block'}">
+        <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+      </div>
+
       <div class="container">
         <div class="menu-navbar" fxLayout="row" fxLayoutAlign="center center">
 

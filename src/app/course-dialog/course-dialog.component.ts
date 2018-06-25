@@ -1,7 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material";
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
+import { UserService } from '../services/user.service';
 import { ThemeService } from '../services/theme.service';
 import { CourseService } from '../services/course.service';
 import { GroupService } from '../services/group.service';
@@ -31,6 +32,8 @@ import { Router } from '@angular/router';
 })
 export class CourseDialogComponent implements OnInit {
 
+
+  userData: UserInterface;
   isLinear = false;
   public email_father: string;
   public themes: ThemeInterface[] = [];
@@ -39,13 +42,13 @@ export class CourseDialogComponent implements OnInit {
   public enteros: Number[];
   public groups: GroupInterface[] = [];
   public evaluations: EvaluationInterface[] = [];
-  public lunes: boolean = false;
-  public martes: boolean = false;
-  public miercoles: boolean = false;
-  public jueves: boolean = false;
-  public viernes: boolean = false;
-  public sabado: boolean = false;
-  public domingo: boolean = false;
+  public lunes = false;
+  public martes = false;
+  public miercoles = false;
+  public jueves = false;
+  public viernes = false;
+  public sabado = false;
+  public domingo = false;
   public nameTheme: any = null;
 
 
@@ -103,6 +106,7 @@ export class CourseDialogComponent implements OnInit {
   constructor(
     private _formBuilder: FormBuilder,
     private dialogRef: MatDialogRef<CourseDialogComponent>,
+    private _UserService: UserService,
     private courseService: CourseService,
     private themeService: ThemeService,
     private groupService: GroupService,
@@ -110,7 +114,9 @@ export class CourseDialogComponent implements OnInit {
     private evaluationService: EvaluationService,
     public authService: AuthService,
     public router: Router,
-    @Inject(MAT_DIALOG_DATA) public data) { }
+    @Inject(MAT_DIALOG_DATA) public data) {
+      this.userData = this._UserService.getUserData();
+    }
 
   ngOnInit() {
     // this.firstFormGroup = this._formBuilder.group({
@@ -173,7 +179,7 @@ export class CourseDialogComponent implements OnInit {
 
     });
 
-    //this.getThemes();
+    // this.getThemes();
   }
 
   close() {
@@ -187,7 +193,7 @@ export class CourseDialogComponent implements OnInit {
 
   onClickNextOne() {
 
-    let fecha = new Date();
+    const fecha = new Date();
     this.course.id = md5(this.stepOneForm.get('name').value + fecha);
     this.course.name = this.stepOneForm.get('name').value;
     this.course.code = this.stepOneForm.get('code').value;
@@ -196,18 +202,18 @@ export class CourseDialogComponent implements OnInit {
     this.course.institution = this.institution;
     this.course.email_owner = this.email_father;
 
-    console.log("Course Interface:   " + this.course.name + "|" + this.course.institution.name);
+    console.log('Course Interface:' + this.course.name + '|' + this.course.institution.name);
   }
 
 
   onClickNextTwo() {
-    console.log("Theme Interface:     " + this.stepTwoForm.get('name').value);
+    console.log('Theme Interface:' + this.stepTwoForm.get('name').value);
   }
 
   addTheme() {
 
-    let fecha = new Date();
-    let auxTheme: ThemeInterface = {
+    const fecha = new Date();
+    const auxTheme: ThemeInterface = {
       id: '',
       id_course: '',
       name: '',
@@ -237,9 +243,9 @@ export class CourseDialogComponent implements OnInit {
   }
 
   addInstructor() {
-    let fecha = new Date();
+    const fecha = new Date();
 
-    let auxInstructor: UserInterface = {
+    const auxInstructor: UserInterface = {
       uid: '',
       email: '',
       username: '',
@@ -255,7 +261,7 @@ export class CourseDialogComponent implements OnInit {
     auxInstructor.email = this.stepThreeForm.get('email').value;
     auxInstructor.id_course.push(this.course.id);
     this.instructors.push(auxInstructor);
-    console.log(this.instructors);
+    console.log('del courseDialog :: addInstructor', this.instructors);
 
     this.stepThreeForm.setValue({
       email: '',
@@ -272,9 +278,9 @@ export class CourseDialogComponent implements OnInit {
 
   addGroup() {
 
-    let fecha = new Date();
+    const fecha = new Date();
 
-    let group: GroupInterface = {
+    const group: GroupInterface = {
       id: '',
       id_course: '',
       name: '',
@@ -283,22 +289,23 @@ export class CourseDialogComponent implements OnInit {
       date_cul: '',
       schedule: [],
       evaluations: [],
-    }
+    };
 
     let auxStudents: string[] = [];
-    let encontre: boolean = false;
-    let index: number = 0;
+    let encontre = false;
+    let index = 0;
 
-    if (this.stepThreeForm.get('students').value !== null)
+    if (this.stepThreeForm.get('students').value !== null) {
       auxStudents = this.stepThreeForm.get('students').value.split(/\n/g);
+    }
 
 
 
-    if (this.groups.length != 0) {
+    if (this.groups.length !== 0) {
 
       for (let i = 0; i < this.groups.length; i++) {
 
-        if (this.groups[i].name == this.stepThreeForm.get('group').value) {
+        if (this.groups[i].name === this.stepThreeForm.get('group').value) {
           encontre = true;
           index = i;
           break;
@@ -308,14 +315,14 @@ export class CourseDialogComponent implements OnInit {
       if (encontre) {
         this.groups[index].stundents = auxStudents;
       } else {
-        group.name = this.stepThreeForm.get('group').value
+        group.name = this.stepThreeForm.get('group').value;
         group.stundents = auxStudents;
         group.id_course = this.course.id;
         group.id = md5(group.id_course + group.name + fecha);
         this.groups.push(group);
       }
     } else {
-      group.name = this.stepThreeForm.get('group').value
+      group.name = this.stepThreeForm.get('group').value;
       group.stundents = auxStudents;
       group.id_course = this.course.id;
       group.id = md5(group.id_course + group.name + fecha);
@@ -337,10 +344,10 @@ export class CourseDialogComponent implements OnInit {
   }
 
   verifyGroups() {
-    if (this.groups.length == 0) {
+    if (this.groups.length === 0) {
 
-      let fecha = new Date();
-      let group: GroupInterface = {
+      const fecha = new Date();
+      const group: GroupInterface = {
         id: '',
         id_course: '',
         name: '',
@@ -349,9 +356,9 @@ export class CourseDialogComponent implements OnInit {
         date_cul: '',
         schedule: [],
         evaluations: [],
-      }
+      };
 
-      group.name = "General"
+      group.name = 'General';
       group.id_course = this.course.id;
       group.id = md5(group.id_course + group.name + fecha);
       this.groups.push(group);
@@ -365,10 +372,10 @@ export class CourseDialogComponent implements OnInit {
   addEvaluation() {
     console.log(this.selectThemes);
 
-    let fecha = new Date();
+    const fecha = new Date();
 
 
-    let evaluation: EvaluationInterface = {
+    const evaluation: EvaluationInterface = {
       id: '',
       themes: [],
       name: '',
@@ -376,7 +383,7 @@ export class CourseDialogComponent implements OnInit {
       groupId: '',
       date: null,
       percent: 0,
-    }
+    };
 
     const themes: string[] = [];
     let name_group = '';
@@ -392,12 +399,12 @@ export class CourseDialogComponent implements OnInit {
 
     name_group = this.stepFourForm.get('group').value;
 
-    if (name_group == "") {
-      name_group = "General";
+    if (name_group === '') {
+      name_group = 'General';
     }
 
     for (let i = 0; i < this.groups.length; i++) {
-      if (this.groups[i].name == name_group) {
+      if (this.groups[i].name === name_group) {
         index = i;
         break;
       }
@@ -429,16 +436,16 @@ export class CourseDialogComponent implements OnInit {
 
     let name_group: string;
     let index = 0;
-    let days: DayInterface[] = [];
+    const days: DayInterface[] = [];
 
-    if (this.stepFiveForm.get('group').value == "") {
-      name_group = "General";
+    if (this.stepFiveForm.get('group').value === '') {
+      name_group = 'General';
     } else {
       name_group = this.stepFiveForm.get('group').value;
     }
 
     for (let i = 0; i < this.groups.length; i++) {
-      if (this.groups[i].name == name_group) {
+      if (this.groups[i].name === name_group) {
         index = i;
         break;
       }
@@ -648,17 +655,27 @@ export class CourseDialogComponent implements OnInit {
   onDone() {
 
     if (this.themes.length !== 0) {
+      let onetheme;
       for (let i = 0; i < this.themes.length; i++) {
-        this.course.themes.push(this.themes[i].id);
+        onetheme = {
+          id: this.themes[i].id,
+          name: this.themes[i].name
+        };
+        // this.course.themes.push(this.themes[i].id);
+        this.course.themes.push(onetheme);
         this.themeService.addNewTheme(this.themes[i]);
       }
     }
 
+    this.course.instructors.push(this.userData.username);
     if (this.instructors.length !== 0) {
       for (let i = 0; i < this.instructors.length; i++) {
         this.course.instructors.push(this.instructors[i].email);
       }
     }
+
+    console.log('del CourseDialog instructores', this.instructors);
+    console.log('del CourseDialog  course instructores' , this.course );
 
     if (this.groups.length !== 0) {
 
@@ -687,7 +704,9 @@ export class CourseDialogComponent implements OnInit {
     this.courseService.addNewCourse(this.course);
     this.instituionsService.addNewInstitution(this.institution);
 
-
+    /** Actualizando el Usuario Creador del curso */
+    this.userData.id_course.unshift(this.course.id);
+    this._UserService.updateUser(this.userData);
 
     this.dialogRef.close();
   }

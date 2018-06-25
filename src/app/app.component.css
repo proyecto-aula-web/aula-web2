@@ -56,9 +56,9 @@ div.container{
 }
 
 mat-sidenav.menu-sidenav{
-  min-width: 18% !important;
-  width: 18% !important;
-  max-width: 18% !important;
+  /* min-width: 18% !important; */
+  /* width: 18% !important; */
+  /* max-width: 18% !important; */
 }
 
 .example-sidenav-content {

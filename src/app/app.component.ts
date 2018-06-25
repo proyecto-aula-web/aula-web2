@@ -113,5 +113,7 @@ export class AppComponent implements OnInit, OnDestroy {
     } else {
       this.ComponentList = undefined;
     }
+
+    console.log('del AppComponenet', this.ComponentList);
   }
 }

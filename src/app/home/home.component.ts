@@ -86,8 +86,9 @@ export class HomeComponent {
       courseId: 'COURSEID001',
       themeId: 'THEMEID001'
     };
-    // dialogConfig.height = '600px';
+    // dialogConfig.height = '100%';
     // dialogConfig.data = {id: null};
+    // dialogConfig.panelClass = 'my-full-screen-dialog';
     this.dialogRef = this.dialog.open(NewPostDialogComponent, dialogConfig);
     this.dialogRef.afterClosed().subscribe(result => {
       if (result) {

@@ -5,8 +5,14 @@ import { ImageCompressService, ResizeOptions, ImageUtilityService, IImage, Sourc
 import { AngularFireStorageModule, AngularFireUploadTask, AngularFireStorage } from 'angularfire2/storage';
 import { Observable } from 'rxjs';
 import { ImageHandlerService } from '../services/image/image-handler.service';
-import { PostInterface, PostMediaInterface, PostAttachmentInterface } from '../models/post';
 import { PostService } from '../services/post.service';
+import { CourseService } from '../services/course.service';
+import { ThemeService } from '../services/theme.service';
+
+import { PostInterface, PostMediaInterface, PostAttachmentInterface } from '../models/post';
+import { CourseInterface } from '../models/course';
+import { ThemeInterface } from '../models/theme';
+
 import { md5 } from '../md5/md5';
 import { FileTypeService } from '../services/file-type.service';
 
@@ -16,7 +22,6 @@ import { FileTypeService } from '../services/file-type.service';
   styleUrls: ['./new-post-dialog.component.css']
 })
 export class NewPostDialogComponent implements OnInit {
-
   // post: PostInterface;
   simpleForm: FormGroup;
   advancedForm: FormGroup;
@@ -65,6 +70,9 @@ export class NewPostDialogComponent implements OnInit {
     '.docx, .docm, .dotx, .dotm, .xlsx, .xlsm, .xltx, .xltm, .xlsb, .xlam, .pptx, .pptm, .potx, .potm, .ppam, .ppsx';
   /** */
 
+  course: CourseInterface;
+  theme: ThemeInterface;
+
   constructor(
     private _formBuilder: FormBuilder,
     private dialogRef: MatDialogRef<NewPostDialogComponent>,
@@ -73,14 +81,21 @@ export class NewPostDialogComponent implements OnInit {
     private storage: AngularFireStorage,
     private ImageHandler: ImageHandlerService,
     private postService: PostService,
+    private _CourseService: CourseService,
+    private _ThemeService: ThemeService,
     private _FileTypeService: FileTypeService
-  ) {}
+  ) {
+    this.course = this._CourseService.getCourse(this.data.courseId);
+
+    if (this.data.themeId !== undefined && this.data.themeId !== null) {
+      this.theme = this._ThemeService.getTheme(this.data.themeId);
+    }
+  }
 
   ngOnInit() {
     this.simpleForm = this._formBuilder.group({
-      description: [''],
+      description: ['']
     });
-
 
     this.advancedForm = this._formBuilder.group({
       name: ['']
@@ -103,8 +118,8 @@ export class NewPostDialogComponent implements OnInit {
       for (let i = 0; i < this.ListTask.length; i++) {
         const element = this.ListTask[i];
         aux = {
-          type : element.type,
-          id : element.id,
+          type: element.type,
+          id: element.id,
           downloadURL: element.response.downloadURL
         };
         media.push(aux);
@@ -124,12 +139,11 @@ export class NewPostDialogComponent implements OnInit {
       }
     }
 
-
     post = {
       id: id,
       user: user,
       createdDate: date,
-      description: description.value,
+      description: description.value
     };
 
     if (media.length > 0) {
@@ -143,12 +157,30 @@ export class NewPostDialogComponent implements OnInit {
     if (post.description === '' && !post.media && !post.attachtment) {
       console.log('Publicacion Vacia');
       this.close(false);
-      return ;
+      return;
     }
 
     console.log('Post', post);
 
     this.postService.addNewPost(post);
+    if (this.data.themeId !== undefined && this.data.themeId !== null) {
+      if (this.theme.posts !== undefined && this.theme.posts !== null) {
+        this.theme.posts.unshift(post.id);
+      } else {
+        this.theme.posts = [];
+        this.theme.posts.push(post.id);
+      }
+
+      this._ThemeService.updateTheme(this.theme);
+    } else {
+      if (this.course.posts !== undefined && this.course.posts !== null) {
+        this.course.posts.unshift(post.id);
+      } else {
+        this.course.posts = [];
+        this.course.posts.push(post.id);
+      }
+      this._CourseService.updateCourse(this.course);
+    }
     this.close(true);
   }
 
@@ -191,7 +223,6 @@ export class NewPostDialogComponent implements OnInit {
               );
               this.startUpload(newFile);
             }
-
           }
         );
       }
@@ -234,7 +265,6 @@ export class NewPostDialogComponent implements OnInit {
     // let response;
 
     task.then(res => {
-
       for (let i = 0; i < this.ListTask.length; i++) {
         if (this.ListTask[i].name === name) {
           this.ListTask[i].response = res;
@@ -245,7 +275,7 @@ export class NewPostDialogComponent implements OnInit {
     });
 
     const currentTask: UploadTask = {
-      id:  id,
+      id: id,
       name: name,
       type: type,
       task: task,
@@ -277,14 +307,13 @@ export class NewPostDialogComponent implements OnInit {
     const percentage = task.percentageChanges();
     const snapshot = task.snapshotChanges();
 
-
     task.then(res => {
       for (let i = 0; i < this.ListTaskAttachment.length; i++) {
         if (this.ListTaskAttachment[i].name === name) {
           this.ListTaskAttachment[i].response = res;
 
           const r = this.storage.ref(this.ListTaskAttachment[i].path);
-          console.log('Attachment response' , this.ListTaskAttachment[i]);
+          console.log('Attachment response', this.ListTaskAttachment[i]);
           console.log('r', r);
         }
       }
@@ -341,7 +370,6 @@ export class NewPostDialogComponent implements OnInit {
     });
   }
   /** */
-
 }
 
 

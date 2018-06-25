@@ -1,3 +1,35 @@
-<p>
-  list-themes works!
-</p>
+<mat-list>
+  <h3 matSubheader>Curso</h3>
+  <mat-list-item>
+    <!-- <mat-icon mat-list-icon>class</mat-icon> -->
+    <h3 mat-line [innerHTML]='course.name'></h3>
+  </mat-list-item>
+  <h3 matSubheader>Instructores</h3>
+  <mat-list-item *ngFor='let inst of course.instructors'>
+    <mat-icon mat-list-icon>person_outline</mat-icon>
+    <h4 mat-line [innerHTML]='inst'></h4>
+  </mat-list-item>
+</mat-list>
+<mat-nav-list>
+
+  <h3 matSubheader>Acciones</h3>
+  <mat-list-item (click)="openThemeDialog()">
+    <mat-icon mat-list-icon>create</mat-icon>
+    <h4 mat-line>Agregar tema</h4>
+  </mat-list-item>
+  <mat-list-item  (click)="openSubThemeDialog()">
+    <mat-icon mat-list-icon>create</mat-icon>
+    <h4 mat-line>Agregar subtema</h4>
+  </mat-list-item>
+  <mat-list-item  (click)="openPostDialog()">
+    <mat-icon mat-list-icon>add</mat-icon>
+    <h4 mat-line>Hacer publicacion</h4>
+  </mat-list-item>
+  <h3 matSubheader>Temas</h3>
+  <mat-list-item *ngFor="let theme of course.themes" (click)='goToTheme(theme.id)'>
+    <!-- <span *ngIf='courses[id]' [innerHTML]="courses[id].name"></span> -->
+    <mat-icon mat-list-icon>folder_special</mat-icon>
+    <h4 mat-line [innerHTML]='theme.name'></h4>
+    <p mat-line [innerHTML]='theme.id'></p>
+  </mat-list-item>
+</mat-nav-list>
