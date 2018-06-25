@@ -77,7 +77,8 @@ export class SigninComponent implements OnInit {
       .emailLogin(email.value, password.value)
         .then(res => {
           console.log('EmailLogin - Respuesta', res);
-          this.router.navigate(['/user-profile']);
+          // this.router.navigate(['/user-profile']);
+          this.router.navigate(['/home']);
         })
         .catch(error => {
           console.log('EmailLogin - Error', Error);
@@ -88,7 +89,8 @@ export class SigninComponent implements OnInit {
     this.auth.googleLogin()
       .then(res => {
         console.log('GoogleLogin - Respuesta', res);
-        this.router.navigate(['/user-profile']);
+        // this.router.navigate(['/user-profile']);
+        this.router.navigate(['/home']);
       })
       .catch(error => {
         console.log('GoogleLogin - Error', Error);

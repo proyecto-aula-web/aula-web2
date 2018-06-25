@@ -44,7 +44,9 @@ import { ImageCompressService, ResizeOptions, ImageUtilityService } from 'ng2-im
 import { ColorService } from './services/color.service';
 import { PostComponent } from './post/post.component';
 import { HomeComponent } from './home/home.component';
-import { ListPostsComponent } from './list-posts/list-posts.component';
+import { ListCoursesComponent } from './list-courses/list-courses.component';
+import { ListThemesComponent } from './list-themes/list-themes.component';
+import { CourseComponent } from './course/course.component';
 
 
 // import { CdkTableModule } from "@angular/cdk/table";
@@ -65,7 +67,9 @@ import { ListPostsComponent } from './list-posts/list-posts.component';
     NewPostDialogComponent,
     PostComponent,
     HomeComponent,
-    ListPostsComponent
+    ListCoursesComponent,
+    ListThemesComponent,
+    CourseComponent
   ],
   imports: [
     // CdkTableModule,

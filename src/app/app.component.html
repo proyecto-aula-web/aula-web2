@@ -2,48 +2,41 @@
 
 
   <mat-toolbar color="primary">
-
   	<mat-toolbar-row>
+      <span><h1 class="example-app-name">{{title}}</h1></span>
+      <div *ngIf="isLogin" [ngStyle]="{'display' : (screenWidth > 840) ? 'none' : 'block'}">
+      <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+      </div>
 
-  	<div *ngIf="isLogin" [ngStyle]="{'display' : (screenWidth > 840) ? 'none' : 'block'}">
-    <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
-    </div>
+      <button mat-icon-button  class="home" routerLink="/user-profile" matTooltip="Home" *ngIf="isLogin">
+          <mat-icon>home</mat-icon>
+      </button>
+      <div class="container">
+        <div class="menu-navbar" fxLayout="row" fxLayoutAlign="center center">
 
+          <button mat-button *ngIf="!isLogin" routerLink="/signin">
+            <mat-icon>account_circle</mat-icon> Login
+          </button>
 
-    <span><h1 class="example-app-name">{{title}}</h1></span>
-
-    <button mat-icon-button  class="home" routerLink="/user-profile" matTooltip="Home" *ngIf="isLogin">
-        <mat-icon>home</mat-icon>
-    </button>
-
-    <div class="container">
-
-
-    <div class="menu-navbar" fxLayout="row" fxLayoutAlign="center center">
-
-                <button mat-button *ngIf="!isLogin" routerLink="/signin">
-                  <mat-icon>account_circle</mat-icon> Login
-                </button>
-
-                <button mat-button *ngIf="!isLogin" routerLink="/signup">
-                    <mat-icon>input</mat-icon> Registrarse
-                </button>
+          <button mat-button *ngIf="!isLogin" routerLink="/signup">
+              <mat-icon>input</mat-icon> Registrarse
+          </button>
 
 
-                <button mat-icon-button matTooltip="Logout" *ngIf="isLogin" (click)="onClickLogout()">
-                    <mat-icon>exit_to_app</mat-icon>
-                </button>
+          <button mat-icon-button matTooltip="Logout" *ngIf="isLogin" (click)="onClickLogout()">
+              <mat-icon>exit_to_app</mat-icon>
+          </button>
 
-                <button mat-button *ngIf="isLogin&&fotoUsuario" matTooltip="{{username}}">
-                    <img src="{{fotoUsuario}}" class="avatar">
-                </button>
+          <button mat-button *ngIf="isLogin&&fotoUsuario" matTooltip="{{username}}">
+              <img src="{{fotoUsuario}}" class="avatar">
+          </button>
 
-                	<mat-chip-list *ngIf="isLogin">
-                    	<mat-chip class="email" color="accent" selected="true">{{email}}</mat-chip>
-                	</mat-chip-list>
-     </div>
- </div>
-</mat-toolbar-row>
+            <mat-chip-list *ngIf="isLogin">
+                <mat-chip class="email" color="accent" selected="true">{{email}}</mat-chip>
+            </mat-chip-list>
+        </div>
+      </div>
+    </mat-toolbar-row>
 
   </mat-toolbar>
 
@@ -51,9 +44,12 @@
   <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
 
     <mat-sidenav #snav class="menu-sidenav" *ngIf="isLogin"  [opened]="screenWidth > 840" [mode]="(screenWidth > 840) ? 'side' : 'over'">
-      <mat-nav-list>
+      <!-- <mat-nav-list>
         <mat-card mat-list-item *ngFor="let nav of fillerNav">{{nav}}</mat-card>
-      </mat-nav-list>
+      </mat-nav-list> -->
+
+      <au-list-courses *ngIf='ComponentList === homeRoute'></au-list-courses>
+      <au-list-themes *ngIf='ComponentList === courseRoute'></au-list-themes>
     </mat-sidenav>
 
     <!-- <mat-sidenav-content>

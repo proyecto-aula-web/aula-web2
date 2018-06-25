@@ -11,23 +11,24 @@ import {
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators/switchMap';
 import { map } from 'rxjs/operators';
+import { UserInterface } from '../models/user';
 
-
-interface User {
-  uid: string;
-  email: string;
-  username?: string;
-  firstname?: string;
-  lastname?: string;
-  displayName?: string;
-  photoURL?: string;
-  provider?: string; /** eliminar */
-}
+// eliminar
+// interface UserInterface {
+//   uid: string;
+//   email: string;
+//   username?: string;
+//   firstname?: string;
+//   lastname?: string;
+//   displayName?: string;
+//   photoURL?: string;
+//   provider?: string; /** eliminar */
+// }
 
 
 @Injectable()
 export class AuthService {
-  user: Observable<User>;
+  user: Observable<UserInterface>;
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -37,7 +38,7 @@ export class AuthService {
     //// Get auth data, then get firestore user document || null
     this.user = this.afAuth.authState.pipe(switchMap(user => {
       if (user) {
-        return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
+        return this.afs.doc<UserInterface>(`users/${user.uid}`).valueChanges();
       } else {
         return of(null);
       }
@@ -51,9 +52,9 @@ export class AuthService {
   //       .then(userData => resolve(userData), error => reject(error));
   //   });
   // }
-  getAuth(){
+  getAuth() {
     return this.afAuth.authState.pipe(map(auth => auth));
-  }  
+  }
 
   registerUser(email: string, pwd: string, additionalUserInfo: any) {
 
@@ -120,7 +121,7 @@ export class AuthService {
   private updateUserData(provider: string, user: any, additionalUserInfo: any) {
     // Sets user data to firestore on login
 
-    let data: User | null;
+    let data: UserInterface | null;
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(
       `users/${user.uid}`
     );

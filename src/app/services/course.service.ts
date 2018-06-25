@@ -16,11 +16,12 @@ export class CourseService {
     this.courseCollection = this.afs.collection('courses', ref => ref);
   }
 
-  addNewCourse(course: CourseInterface) {
-    this.courseCollection.add(course);
-  }
+  // addNewCourse(course: CourseInterface) {
+  //   this.courseCollection.add(course);
+  // }
 
-  addNewCourse2(course: CourseInterface) {
+  // addNewCourse2(course: CourseInterface) {
+  addNewCourse(course: CourseInterface) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`courses/${course.id}`);
     return userRef.set(course, { merge: true });
   }

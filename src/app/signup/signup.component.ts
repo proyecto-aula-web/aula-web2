@@ -1,25 +1,25 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
 // import { FormGroup, FormControl, Validators } from "@angular/forms";
 import {
   FormBuilder,
   FormGroup,
   Validators,
   AbstractControl
-} from "@angular/forms";
-import { AuthService } from "../core/auth.service";
-import { Router } from "@angular/router";
-import { PasswordValidation } from "./password-validation";
+} from '@angular/forms';
+import { AuthService } from '../core/auth.service';
+import { Router } from '@angular/router';
+import { PasswordValidation } from './password-validation';
 
 @Component({
-  selector: "au-signup",
-  templateUrl: "./signup.component.html",
-  styleUrls: ["./signup.component.css"]
+  selector: 'au-signup',
+  templateUrl: './signup.component.html',
+  styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
   images = {
     // fullPathAsstes: "/assets/images/tosignup003.jpg",
-    img1: "/assets/images/image001.jpg",
-    img2: "/assets/images/image002.jpg"
+    img1: '/assets/images/image001.jpg',
+    img2: '/assets/images/image002.jpg'
   };
 
   // model = { /**eliminar */
@@ -49,7 +49,7 @@ export class SignupComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("onInit SingupComponent");
+    console.log('onInit SingupComponent');
     // this.createForm();
 
     // this.signupForm = new FormGroup({
@@ -79,37 +79,37 @@ export class SignupComponent implements OnInit {
   //   this.createForm();
   // }
   createForm() {
-    const usernamePattern = "^[a-z0-9_]{4,25}$";
-    const emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$";
+    const usernamePattern = '^[a-z0-9_]{4,25}$';
+    const emailPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$';
 
     this.signupForm = this.fb.group({
       // <-- the parent FormGroup
       name: this.fb.group({
-        firstname: ["", Validators.required],
-        lastname: ["", Validators.required]
+        firstname: ['', Validators.required],
+        lastname: ['', Validators.required]
       }),
-      username: ["", [Validators.required, Validators.pattern(usernamePattern)]],
-      email: ["", [Validators.required, Validators.pattern(emailPattern)]],
+      username: ['', [Validators.required, Validators.pattern(usernamePattern)]],
+      email: ['', [Validators.required, Validators.pattern(emailPattern)]],
       password: this.fb.group({
-        pwd: ["", Validators.required],
-        confirmPwd: ["", Validators.required]
+        pwd: ['', Validators.required],
+        confirmPwd: ['', Validators.required]
       })
     });
   }
 
   onSubmit() {
-    const username = this.signupForm.get("username");
-    const name = this.signupForm.get("name");
-    const email = this.signupForm.get("email");
-    const password = this.signupForm.get("password");
+    const username = this.signupForm.get('username');
+    const name = this.signupForm.get('name');
+    const email = this.signupForm.get('email');
+    const password = this.signupForm.get('password');
     const additionalUserInfo = {
       firstname: name.value.firstname,
       lastname: name.value.lastname,
       username: username.value
     };
 
-    console.log("signupForm submited!!");
-    console.log("RegisterUser actived!!");
+    console.log('signupForm submited!!');
+    console.log('RegisterUser actived!!');
     // console.log(this.signupForm.get("name"));
     // console.log(this.signupForm.get("username"));
     // console.log(this.signupForm.get("email"));
@@ -122,11 +122,12 @@ export class SignupComponent implements OnInit {
     this.auth
       .registerUser(email.value, password.value.pwd, additionalUserInfo)
       .then(res => {
-        console.log("RegisterUser - Respuesta", res);
-        this.router.navigate(["/user-profile"]);
+        console.log('RegisterUser - Respuesta', res);
+        // this.router.navigate(["/user-profile"]);
+        this.router.navigate(['/home']);
       })
       .catch(error => {
-        console.log("RegisterUser - Error", Error);
+        console.log('RegisterUser - Error', Error);
       });
   }
 }
