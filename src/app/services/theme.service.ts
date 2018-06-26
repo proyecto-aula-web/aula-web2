@@ -52,6 +52,7 @@ export class ThemeService {
     this.themeDoc = this.afs.doc<ThemeInterface>(`themes/${idTheme}`);
     this.theme = this.themeDoc.snapshotChanges().pipe(
       map(action => {
+        console.log('del themeService :: getOneTheme', action);
         if (action.payload.exists === false) {
           return null;
         } else {
@@ -66,8 +67,8 @@ export class ThemeService {
     return this.theme;
   }
 
-  getTheme(id: string): ThemeInterface {
-    // console.log("del ThemeService :: getTheme", this.course);
+  getThemeData(id: string): ThemeInterface {
+    // console.log("del ThemeService :: getThemeData", this.course);
     if (this.themes[id]) {
       return this.themes[id];
     } else {
@@ -75,6 +76,14 @@ export class ThemeService {
     }
   }
 
+  getTheme(id: string): Observable<ThemeInterface> {
+    // console.log("del ThemeService :: getThemeData", this.course);
+    if (this.themesObservables[id]) {
+      return this.themesObservables[id];
+    } else {
+      return null;
+    }
+  }
   updateTheme(theme: ThemeInterface) {
     this.themeDoc = this.afs.doc(`themes/${theme.id}`);
     this.themeDoc.update(theme);
@@ -91,5 +100,9 @@ export class ThemeService {
 
   setCurrentThemeId(id: string): void {
     this.currentThemeId = id;
+  }
+
+  clearId(): void {
+    this.currentThemeId = null;
   }
 }

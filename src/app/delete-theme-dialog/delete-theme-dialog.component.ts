@@ -32,7 +32,7 @@ export class DeleteThemeDialogComponent implements OnInit {
   ngOnInit() {
   	
        this.idTheme = this.data.id;
-       this.getTheme();
+       this.getThemeData();
        this.name = this.theme.name;
      
     }
@@ -46,7 +46,7 @@ export class DeleteThemeDialogComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  getTheme(){
+  getThemeData(){
       this.themeService.getOneTheme(this.idTheme).subscribe(theme => this.theme = theme);
    }
 

@@ -25,7 +25,7 @@ export class NewThemeComponent implements OnInit {
   	) { }
 
   	ngOnInit() {
-      this.getThemes();
+      this.getThemeDatas();
   	}
 
   openDialog(){
@@ -59,7 +59,7 @@ export class NewThemeComponent implements OnInit {
     this.dialog.open(DeleteThemeDialogComponent, dialogConfig);
   }
 
-  getThemes(){
+  getThemeDatas(){
     this.themeService.getAllThemes().subscribe(themes => this.themes = themes);
     console.log(this.themes);
   }

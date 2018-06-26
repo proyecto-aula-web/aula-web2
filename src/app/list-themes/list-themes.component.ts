@@ -18,9 +18,11 @@ import { NewPostDialogComponent } from '../new-post-dialog/new-post-dialog.compo
 import { CourseDialogComponent } from '../course-dialog/course-dialog.component';
 import { CourseService } from '../services/course.service';
 import { UserService } from '../services/user.service';
+import { ThemeService } from '../services/theme.service';
 
 import { CourseInterface } from '../models/course';
 import { UserInterface } from '../models/user';
+import { ThemeInterface } from '../models/theme';
 
 @Component({
   selector: 'au-list-themes',
@@ -35,6 +37,8 @@ export class ListThemesComponent implements OnInit, OnDestroy {
 
   private dialogRef: any;
 
+  currentRoute: {id: string; idTheme: string};
+
   constructor(
     private _Router: Router,
     private route: ActivatedRoute,
@@ -43,7 +47,8 @@ export class ListThemesComponent implements OnInit, OnDestroy {
     private _CourseService: CourseService
   ) {
     const id = this._CourseService.getCurrentCourseId();
-    this.course = this._CourseService.getCourse(id);
+    this.course = this._CourseService.getCourseData(id);
+    // this.currentRoute = {};
   }
 
   ngOnInit() {
@@ -65,10 +70,59 @@ export class ListThemesComponent implements OnInit, OnDestroy {
 
     this._Router.events.forEach((event: NavigationEnvent) => {
       if (event instanceof NavigationStart) {
-        // this.ListToShow(event.url);
+        console.log('----------------- NavigationStart');
+        console.log(event.id);
+        console.log(event.navigationTrigger);
+        console.log(event.restoredState);
+        console.log(event.toString());
+        console.log(event.url);
       } else if (event instanceof NavigationEnd) {
-        // this.ListToShow(event.url);
+        console.log('----------------- NavigationEnd');
+        console.log(event.id);
+        console.log(event.toString());
+        console.log(event.url);
+        console.log(event.urlAfterRedirects);
+        console.log('-----------------');
+        // console.log(event.url);
+        let id, idTheme;
+        const arr = event.urlAfterRedirects.split('/');
+        arr.shift();
+
+        const c = arr.findIndex((current) => {
+          return (current === 'course');
+        });
+
+        const t = arr.findIndex(current => {
+          return current === 'theme';
+        });
+
+        if (c !== -1) {
+          id = arr[c + 1];
+        }
+        if (t !== -1) {
+          idTheme = arr[t + 1];
+        }
+
+        this.currentRoute = {
+          id: id,
+          idTheme: idTheme
+        };
+
+        console.log('del currentRoute', id , idTheme, this.currentRoute);
+
       }
+    });
+
+    this.route.params.subscribe((params) => {
+      // const id = paramMap.get('id');
+      // paramMap.
+      // const idTheme = paramMap.get('idTheme');
+      // this.currentRoute = {
+      //   id: id,
+      //   idTheme: idTheme
+      // };
+      // console.log('del *_*currentTheme', true, id, idTheme, this.currentRoute);
+      console.log('del *_*params', true, params);
     });
   }
 
@@ -88,11 +142,13 @@ export class ListThemesComponent implements OnInit, OnDestroy {
 
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-
+    // this.currentTheme();
+    console.log('del currentRoute :: courseId', this.currentRoute.id);
+    console.log('del currentRoute :: themeId', this.currentRoute.idTheme);
     dialogConfig.data = {
       user: this.userData.username,
       courseId: this.course.id,
-      themeId: undefined
+      themeId: this.currentRoute.idTheme
     };
     // dialogConfig.height = '100%';
     // dialogConfig.data = {id: null};
@@ -109,14 +165,17 @@ export class ListThemesComponent implements OnInit, OnDestroy {
     });
   }
 
+  // currentTheme() {
+  //   const id = this.route.snapshot.paramMap.get('id');
+  //   const idTheme = this.route.snapshot.paramMap.get('idTheme');
+  //   this.currentRoute = {
+  //     id: id,
+  //     idTheme: idTheme
+  //   };
+  //   console.log('del currentTheme', true, id, idTheme, this.currentRoute );
+  // }
 
+  // currentTheme() {
 
-  currentTheme() {
-    const id = this.route.snapshot.paramMap.get('id');
-    const idTheme = this.route.snapshot.paramMap.get('idTheme');
-    // this.route1 = {
-    //   id: id,
-    //   idTheme: idTheme
-    // };
-  }
+  // }
 }

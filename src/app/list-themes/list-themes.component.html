@@ -13,11 +13,11 @@
 <mat-nav-list>
 
   <h3 matSubheader>Acciones</h3>
-  <mat-list-item (click)="openThemeDialog()">
+  <mat-list-item *ngIf="isInstructor" (click)="openThemeDialog()">
     <mat-icon mat-list-icon>create</mat-icon>
     <h4 mat-line>Agregar tema</h4>
   </mat-list-item>
-  <mat-list-item  (click)="openSubThemeDialog()">
+  <mat-list-item *ngIf="isInstructor" (click)="openSubThemeDialog()">
     <mat-icon mat-list-icon>create</mat-icon>
     <h4 mat-line>Agregar subtema</h4>
   </mat-list-item>
@@ -30,6 +30,6 @@
     <!-- <span *ngIf='courses[id]' [innerHTML]="courses[id].name"></span> -->
     <mat-icon mat-list-icon>folder_special</mat-icon>
     <h4 mat-line [innerHTML]='theme.name'></h4>
-    <p mat-line [innerHTML]='theme.id'></p>
+    <!-- <p mat-line [innerHTML]='theme.id'></p> -->
   </mat-list-item>
 </mat-nav-list>

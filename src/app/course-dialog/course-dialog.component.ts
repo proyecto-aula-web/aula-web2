@@ -179,14 +179,14 @@ export class CourseDialogComponent implements OnInit {
 
     });
 
-    // this.getThemes();
+    // this.getThemeDatas();
   }
 
   close() {
     this.dialogRef.close();
   }
 
-  getThemes() {
+  getThemeDatas() {
     this.themeService.getAllThemes().subscribe(themes => this.themes = themes);
     console.log(this.themes);
   }

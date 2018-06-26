@@ -35,7 +35,7 @@ export class ThemeDialogComponent implements OnInit {
       
       if(this.data.id){
        this.idTheme = this.data.id;
-       this.getTheme(); 
+       this.getThemeData(); 
        console.log("Entre");
       }else{
         console.log("No Entre");
@@ -46,7 +46,7 @@ export class ThemeDialogComponent implements OnInit {
         this.dialogRef.close();
     }
 
-    getTheme(){
+    getThemeData(){
       this.themeService.getOneTheme(this.idTheme).subscribe(theme => this.theme = theme);
     }
 

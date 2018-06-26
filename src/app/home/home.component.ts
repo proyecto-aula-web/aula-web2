@@ -40,6 +40,8 @@ export class HomeComponent {
     }
   ];
 
+
+
   add = 'Add course';
   private dialogRef: any;
 
@@ -75,30 +77,30 @@ export class HomeComponent {
     this.dialog.open(CourseDialogComponent, dialogConfig);
   }
 
-  openNewPostDialog() {
-    const dialogConfig = new MatDialogConfig();
+  // openNewPostDialog() {
+  //   const dialogConfig = new MatDialogConfig();
 
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
+  //   dialogConfig.disableClose = true;
+  //   dialogConfig.autoFocus = true;
 
-    dialogConfig.data = {
-      user: 'username0001',
-      courseId: 'COURSEID001',
-      themeId: 'THEMEID001'
-    };
-    // dialogConfig.height = '100%';
-    // dialogConfig.data = {id: null};
-    // dialogConfig.panelClass = 'my-full-screen-dialog';
-    this.dialogRef = this.dialog.open(NewPostDialogComponent, dialogConfig);
-    this.dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        console.log('Publicacion Realizada Satisfactoriamente');
-        this.openSnackBar('Publicacion realizada correctamente', 'ok');
-      } else {
-        console.log('Error en la publicacion');
-        this.openSnackBar('Error en la publicacion', 'ok');
-      }
-    });
-  }
+  //   dialogConfig.data = {
+  //     user: 'username0001',
+  //     courseId: 'COURSEID001',
+  //     themeId: 'THEMEID001'
+  //   };
+  //   // dialogConfig.height = '100%';
+  //   // dialogConfig.data = {id: null};
+  //   // dialogConfig.panelClass = 'my-full-screen-dialog';
+  //   this.dialogRef = this.dialog.open(NewPostDialogComponent, dialogConfig);
+  //   this.dialogRef.afterClosed().subscribe(result => {
+  //     if (result) {
+  //       console.log('Publicacion Realizada Satisfactoriamente');
+  //       this.openSnackBar('Publicacion realizada correctamente', 'ok');
+  //     } else {
+  //       console.log('Error en la publicacion');
+  //       this.openSnackBar('Error en la publicacion', 'ok');
+  //     }
+  //   });
+  // }
 }
 

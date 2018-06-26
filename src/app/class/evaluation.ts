@@ -27,7 +27,7 @@ export class Evaluation {
     this.instructors = instructors;
   }
 
-  getThemes(): {id: string, name: string}[] {
+  getThemeDatas(): {id: string, name: string}[] {
     return this.themes;
   }
 

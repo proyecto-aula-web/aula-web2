@@ -66,10 +66,18 @@ export class CourseService {
     return this.course;
   }
 
-  getCourse(id: string): CourseInterface {
-    console.log('del CourseService :: getCourse', this.course);
+  getCourseData(id: string): CourseInterface {
+    console.log('del CourseService :: getCourseData', this.course);
     if (this.courses[id]) {
       return this.courses[id];
+    } else {
+      return null;
+    }
+  }
+
+  getCourse(id: string): Observable<CourseInterface> {
+    if (this.coursesObservables[id]) {
+      return this.coursesObservables[id];
     } else {
       return null;
     }

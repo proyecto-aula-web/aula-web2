@@ -1,3 +1,23 @@
-<p>
-  course works! {{idToShow}}
-</p>
+<div fxLayoutAlign="center start">
+  <div style="width: 100%; color:gray; font-size: 80%; display: block; padding: 0px 20px;">
+    <h1 [innerHTML]='course.name'></h1>
+    <mat-divider></mat-divider>
+  </div>
+
+</div>
+<div fxLayoutAlign="center start">
+
+  <div *ngIf="!course.posts || (course.posts && course.posts.length === 0)">
+    <h3 style='color:dimgray'>No hay publicaciones para mostrar...</h3>
+    <h2>¡Sé el primero en Publicar!</h2>
+    <!-- <div fxLayoutAlign="center start">
+      <button mat-raised-button color="primary" (click)='null'>Hacer Publicacion</button>
+    </div> -->
+  </div>
+
+  <mat-list *ngIf='course.posts'>
+    <mat-list-item style="width: 100%; height: auto;" *ngFor="let post of course.posts">
+      <au-post [id]="post" style="width: 100%;"></au-post>
+    </mat-list-item>
+  </mat-list>
+</div>

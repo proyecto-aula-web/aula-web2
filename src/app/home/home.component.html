@@ -1,4 +1,4 @@
-<div class="course-buttons" fxLayout="row" fxLayoutGap="30px" fxLayoutAlign="center start">
+<!-- <div class="course-buttons" fxLayout="row" fxLayoutGap="30px" fxLayoutAlign="center start">
   <div>
     <button mat-raised-button color="primary">Unirse a un curso</button>
   </div>
@@ -8,40 +8,27 @@
   <div>
     <button mat-raised-button color="primary" (click)='openNewPostDialog()'>Hacer Publicacion</button>
   </div>
+</div> -->
+<div fxLayout="column" fxLayoutAlign="start center">
+  <div style="width: 100%; color:gray; font-size: 80%; display: block; padding: 0px 20px;">
+    <h1>Plataforma Aula</h1>
+    <mat-divider></mat-divider>
+  </div>
+  <div style="width:200px; padding: 10px;">
+    <button mat-raised-button color="primary" style="width: 100%;" (click)='null'>Unirse a un curso</button>
+  </div>
+  <div style="width:200px; padding: 10px;">
+    <button mat-raised-button color="primary" style="width: 100%;" (click)='openDialogCourse()'>Crear curso</button>
+  </div>
 </div>
 
-
-<div fxLayoutAlign="center start">
-  <!-- <div *ngFor="let post of ListPost">
-    <au-post [id]="post.id"></au-post>
-  </div> -->
-
+<!-- <div fxLayoutAlign="center start">
   <mat-list>
     <mat-list-item style="width: 100%; height: auto;" *ngFor="let post of ListPost">
       <au-post [id]="post.id" style="width: 100%;"></au-post>
     </mat-list-item>
   </mat-list>
-  <!-- <au-post id="0704f066643fd35c583e309b15a44043"></au-post>
-<mat-card class="example-card">
-  <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>Shiba Inu</mat-card-title>
-    <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-  </mat-card-header>
-  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-  <mat-card-content>
-    <p>
-      The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-      A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-      bred for hunting.
-    </p>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-button>LIKE</button>
-    <button mat-button>SHARE</button>
-  </mat-card-actions>
-</mat-card> -->
-</div>
+</div> -->
 
 <div class="floating-button" fxLayoutAlign="end end">
   <button mat-fab color="accent" matTooltip="{{add}}" (click)="openDialogCourse()">

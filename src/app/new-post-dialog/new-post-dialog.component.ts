@@ -85,10 +85,10 @@ export class NewPostDialogComponent implements OnInit {
     private _ThemeService: ThemeService,
     private _FileTypeService: FileTypeService
   ) {
-    this.course = this._CourseService.getCourse(this.data.courseId);
+    this.course = this._CourseService.getCourseData(this.data.courseId);
 
     if (this.data.themeId !== undefined && this.data.themeId !== null) {
-      this.theme = this._ThemeService.getTheme(this.data.themeId);
+      this.theme = this._ThemeService.getThemeData(this.data.themeId);
     }
   }
 

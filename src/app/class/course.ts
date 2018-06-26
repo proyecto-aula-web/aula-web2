@@ -78,7 +78,7 @@ export class Course {
     this.evaluations = evaluations;
   }
 
-  getThemes(): Theme[] {
+  getThemeDatas(): Theme[] {
     return this.themes;
   }
 
